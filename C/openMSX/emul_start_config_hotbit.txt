@@ -1,0 +1,2 @@
+ machine Boosted_Hotbit
+diska dsk/ 

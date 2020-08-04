@@ -1,0 +1,17 @@
+5 r$="":print "INIT:":for x=1 to 75:m$=chr$(192+rnd(1)*9):r$=r$+m$:print m$;:next x
+10 c=20:r=13:w=15:d=0
+20 l=0:for z=0 to 1 step 0:x=rnd(1)*10
+30 if x<4 then r=r-1 else if x>5 then r=r+1
+40 if r<1 then r=1 else if r+w>37 then r=37-w
+50 rn=rnd(1)*35+1:print mid$(r$,rn,r);spc(w);mid$(r$,rn,39-r-w);
+60 d=d+1:l=l+1:if l>49 then l=0:w=w-1:if w<3 then w=3
+70 if d<25 then goto 20
+80 A=stick(0):if A=7 then c=c-1 else if A=3 then c=c+1
+90 p=vpeek(c):if p<>32 then 200
+100 vpoke c,42:next z
+200 print spc(17); "CRASH!":if d>h then h=d
+205 print "SCORE:";d;"    HIGH:";h
+210 for x=1 to 2000:next x
+220 a$=inkey$:if a$="" then 220
+230 goto 10
+

@@ -1,0 +1,13 @@
+machine Philips_NMS_8255 
+ext slotexpander
+ext SunriseIDE
+ext Yamaha_SFG-05
+ext slotexpander
+ext ram4mb
+ext MegaRAM_2MB
+bind F12 cycle videosource
+plug joyporta mouse 
+plug printerport simpl 
+diska dsk/ 
+hda /home/israel/Documentos/MSX/hd.dsk
+

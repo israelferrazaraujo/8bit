@@ -1,0 +1,14 @@
+machine Panasonic_FS-A1GT
+ext ide
+ext gfx9000
+ext slotexpander
+ext fmpac
+ext Yamaha_SFG-05
+ext OPL3Cartridge2_stereo
+ext ram4mb
+bind F12 cycle videosource
+plug joyporta mouse 
+plug printerport simpl 
+diska dsk/ 
+hda /home/israel/Documentos/MSX/hd.dsk
+
