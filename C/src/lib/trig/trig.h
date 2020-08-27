@@ -1,10 +1,3 @@
-/**
- * Example for a interpolated sine/cosine table lookup
- *
- * @file sin1.h
- * @author stfwi
- *
- */
 #ifndef _TRIG_H_
 #define _TRIG_H_
 

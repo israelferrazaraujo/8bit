@@ -103,8 +103,6 @@ static const int sin90[TABLE_SIZE+1] = {
  * Input: -1 to 1 as int16 Q15  == -32768 to 32767.
  * Output: -1 to 1 as int16 Q15 == -32768 to 32767.
  *
- * See the full description at www.AtWillys.de for the detailed
- * explanation.
  */
 static int v0, v1;
 static int sin(int angle)
