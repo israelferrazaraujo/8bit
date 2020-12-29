@@ -1,5 +1,5 @@
 machine Panasonic_FS-A1GT
-ext ide
+ext SunriseIDE
 ext gfx9000
 ext slotexpander
 ext fmpac

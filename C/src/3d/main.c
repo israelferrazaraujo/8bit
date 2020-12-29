@@ -183,7 +183,8 @@ void MultiplyMatrixVector(vec3d *i, vec3d *o, mat4x4 *m)
 
 void OnUserCreate()
 {
-	meshCube.tris = {
+	//meshCube.tris = {
+    float x[][] = {
 		// SOUTH
 		{ 0.0f, 0.0f, 0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 0.0f },
 		{ 0.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 0.0f, 0.0f },
@@ -209,6 +210,12 @@ void OnUserCreate()
 		{ 1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f,    1.0f, 0.0f, 0.0f },
 
 		};
+    for(int x=0; x<12; x++)
+        for(int y=0; y<3; y++)
+        {
+            meshCube.tris[x][y] = x[x][y];
+        }
+    
 	// Projection Matrix
 	float fNear = 0.1f;
 	float fFar = 1000.0f;
