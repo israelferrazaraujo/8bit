@@ -29,7 +29,7 @@
 
 #define xTWO_PI     6433 // fixed point TWO_PI  (int)(TWO_PI  * (1<<10))
 #define xHALF_PI    1608 // fixed point HALF_PI (int)(HALF_PI * (1<<10))
-#define BITS_DIFF   5    // difference between Q15 and fixed fractional bits representation
+#define BITS_DIFF   (15-FRACTIONAL_BITS)    // difference between Q15 and fixed fractional bits representation
 
 /**
  * "5 bit" lookup table for the offsets. These are the sines for exactly

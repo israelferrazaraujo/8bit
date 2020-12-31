@@ -1,7 +1,5 @@
 #include "fixed.h"
 
-#define FRACTIONAL_BITS 10
-
 inline unsigned int ufixed2uint(ufixed input)
 {
     return (input >> FRACTIONAL_BITS);
@@ -48,13 +46,15 @@ inline fixed float2fixed(float input)
 }
 inline fixed fixed_mul(fixed mer, fixed mcand)
 {
-    //return (mer / 2)  * (mcand >> (FRACTIONAL_BITS-1));
-    return (mer >> 1)  * (mcand >> (FRACTIONAL_BITS-1));
-    //return ((fixed)( ((long)mer * (long)mcand) >> FRACTIONAL_BITS ));
+    //return ( (mer * mcand) >> FRACTIONAL_BITS );
+    //return ( (((long)mer) * mcand) >> FRACTIONAL_BITS );
+    return (mer >> HALF_FRACTIONAL_BITS) * (mcand >> HALF_FRACTIONAL_BITS);
+    //return (mer >> 1)  * (mcand >> (FRACTIONAL_BITS-1));
+    //return lfixed_mul(mer, mcand);
 }
 inline fixed fixed_div(fixed num, fixed den)
 {
-    return ((fixed)( ( ((long)num) << FRACTIONAL_BITS ) / den ));
+    return ( ( ((long)num) << FRACTIONAL_BITS ) / den );
     //return ((fixed)( ( (long)num * (1l << FRACTIONAL_BITS) ) / (long)den ));
     //return ((fixed)( ( ((long)num) << FRACTIONAL_BITS ) / (long)den ));
 }

@@ -1,6 +1,9 @@
 #ifndef _FIXED_H_
 #define _FIXED_H_
 
+#define FRACTIONAL_BITS 10
+#define HALF_FRACTIONAL_BITS 5
+
 /// Fixed point format
 typedef int fixed;
 typedef long lfixed;
