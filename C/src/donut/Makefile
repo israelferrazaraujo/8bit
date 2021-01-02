@@ -88,7 +88,7 @@ all:  $(REL_FILES) $(COM_FILES) clean
 #	$(AS) -o $^
 
 clean:
-	@rm -f *.com *.asm *.lst *.sym *.bin *.ihx *.lk *.map *.noi *.rel
+	# @rm -f *.com *.asm *.lst *.sym *.bin *.ihx *.lk *.map *.noi *.rel
 	@echo "Temp files removed!"
 
 hotbit:

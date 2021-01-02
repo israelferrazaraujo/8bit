@@ -1,0 +1,15 @@
+-mjwx
+-i main.ihx
+-b _CODE = 0x0106
+-b _DATA = 0x0000
+-k ../../fusion-c/lib/
+-k /usr/local/bin/../share/sdcc/lib/z80
+-k /usr/local/share/sdcc/lib/z80
+-l fusion.lib
+-l z80
+main.rel
+../../fusion-c/include/crt0_msxdos.rel
+../lib/trig/trig.rel
+../lib/fixed/fixed.rel
+
+-e

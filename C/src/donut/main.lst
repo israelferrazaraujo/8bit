@@ -1,0 +1,1677 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 4.0.0 #11528 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module main
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _PrintFloat
+                             13 	.globl _lfixed_div
+                             14 	.globl _fixed_mul
+                             15 	.globl _float2fixed
+                             16 	.globl _int2fixed
+                             17 	.globl _fixed2int
+                             18 	.globl _powf
+                             19 	.globl _cosf
+                             20 	.globl _sinf
+                             21 	.globl _putchar
+                             22 	.globl _Itoa
+                             23 	.globl _StrLen
+                             24 	.globl _StrConcat
+                             25 	.globl _Width
+                             26 	.globl _SetColors
+                             27 	.globl _RealTimer
+                             28 	.globl _SetRealTimer
+                             29 	.globl _Screen
+                             30 	.globl _Cls
+                             31 	.globl _Locate
+                             32 	.globl _Print
+                             33 	.globl _fVDPHz
+                             34 	.globl _fElapsedTime
+                             35 	.globl _w
+                             36 	.globl _b
+                             37 	.globl _z
+                             38 	.globl _lt_sin_j
+                             39 	.globl _lt_sin_i
+                             40 	.globl _lt_cos_j
+                             41 	.globl _lt_cos_i
+                             42 	.globl _i_inc
+                             43 	.globl _i_lim
+                             44 	.globl _j_inc
+                             45 	.globl _j_lim
+                             46 	.globl _fj
+                             47 	.globl _fi
+                             48 	.globl _B_inc
+                             49 	.globl _A_inc
+                             50 	.globl _B
+                             51 	.globl _A
+                             52 	.globl _N
+                             53 	.globl _o
+                             54 	.globl _y
+                             55 	.globl _x
+                             56 	.globl _j_max
+                             57 	.globl _i_max
+                             58 	.globl _k
+                             59 	.globl _j
+                             60 	.globl _i
+                             61 	.globl _nh
+                             62 	.globl _mh
+                             63 	.globl _gh
+                             64 	.globl _eh
+                             65 	.globl _dn
+                             66 	.globl _de
+                             67 	.globl _dg
+                             68 	.globl _fe
+                             69 	.globl _fg
+                             70 	.globl __30
+                             71 	.globl __15
+                             72 	.globl __8
+                             73 	.globl __5
+                             74 	.globl __2
+                             75 	.globl __1
+                             76 	.globl _t
+                             77 	.globl _n
+                             78 	.globl _m
+                             79 	.globl _l
+                             80 	.globl _D
+                             81 	.globl _h
+                             82 	.globl _g
+                             83 	.globl _f
+                             84 	.globl _e
+                             85 	.globl _d
+                             86 	.globl _c
+                             87 ;--------------------------------------------------------
+                             88 ; special function registers
+                             89 ;--------------------------------------------------------
+                             90 ;--------------------------------------------------------
+                             91 ; ram data
+                             92 ;--------------------------------------------------------
+                             93 	.area _DATA
+   0000                      94 _c::
+   0000                      95 	.ds 2
+   0002                      96 _d::
+   0002                      97 	.ds 2
+   0004                      98 _e::
+   0004                      99 	.ds 2
+   0006                     100 _f::
+   0006                     101 	.ds 2
+   0008                     102 _g::
+   0008                     103 	.ds 2
+   000A                     104 _h::
+   000A                     105 	.ds 2
+   000C                     106 _D::
+   000C                     107 	.ds 2
+   000E                     108 _l::
+   000E                     109 	.ds 2
+   0010                     110 _m::
+   0010                     111 	.ds 2
+   0012                     112 _n::
+   0012                     113 	.ds 2
+   0014                     114 _t::
+   0014                     115 	.ds 2
+   0016                     116 __1::
+   0016                     117 	.ds 2
+   0018                     118 __2::
+   0018                     119 	.ds 2
+   001A                     120 __5::
+   001A                     121 	.ds 2
+   001C                     122 __8::
+   001C                     123 	.ds 2
+   001E                     124 __15::
+   001E                     125 	.ds 2
+   0020                     126 __30::
+   0020                     127 	.ds 2
+   0022                     128 _fg::
+   0022                     129 	.ds 2
+   0024                     130 _fe::
+   0024                     131 	.ds 2
+   0026                     132 _dg::
+   0026                     133 	.ds 2
+   0028                     134 _de::
+   0028                     135 	.ds 2
+   002A                     136 _dn::
+   002A                     137 	.ds 2
+   002C                     138 _eh::
+   002C                     139 	.ds 2
+   002E                     140 _gh::
+   002E                     141 	.ds 2
+   0030                     142 _mh::
+   0030                     143 	.ds 2
+   0032                     144 _nh::
+   0032                     145 	.ds 2
+   0034                     146 _i::
+   0034                     147 	.ds 2
+   0036                     148 _j::
+   0036                     149 	.ds 2
+   0038                     150 _k::
+   0038                     151 	.ds 2
+   003A                     152 _i_max::
+   003A                     153 	.ds 2
+   003C                     154 _j_max::
+   003C                     155 	.ds 2
+   003E                     156 _x::
+   003E                     157 	.ds 2
+   0040                     158 _y::
+   0040                     159 	.ds 2
+   0042                     160 _o::
+   0042                     161 	.ds 2
+   0044                     162 _N::
+   0044                     163 	.ds 2
+   0046                     164 _A::
+   0046                     165 	.ds 4
+   004A                     166 _B::
+   004A                     167 	.ds 4
+   004E                     168 _A_inc::
+   004E                     169 	.ds 4
+   0052                     170 _B_inc::
+   0052                     171 	.ds 4
+   0056                     172 _fi::
+   0056                     173 	.ds 4
+   005A                     174 _fj::
+   005A                     175 	.ds 4
+   005E                     176 _j_lim::
+   005E                     177 	.ds 4
+   0062                     178 _j_inc::
+   0062                     179 	.ds 4
+   0066                     180 _i_lim::
+   0066                     181 	.ds 4
+   006A                     182 _i_inc::
+   006A                     183 	.ds 4
+   006E                     184 _lt_cos_i::
+   006E                     185 	.ds 644
+   02F2                     186 _lt_cos_j::
+   02F2                     187 	.ds 182
+   03A8                     188 _lt_sin_i::
+   03A8                     189 	.ds 644
+   062C                     190 _lt_sin_j::
+   062C                     191 	.ds 182
+   06E2                     192 _z::
+   06E2                     193 	.ds 3520
+   14A2                     194 _b::
+   14A2                     195 	.ds 1760
+                            196 ;--------------------------------------------------------
+                            197 ; ram data
+                            198 ;--------------------------------------------------------
+                            199 	.area _INITIALIZED
+   0000                     200 _w::
+   0000                     201 	.ds 2
+   0002                     202 _fElapsedTime::
+   0002                     203 	.ds 4
+   0006                     204 _fVDPHz::
+   0006                     205 	.ds 4
+                            206 ;--------------------------------------------------------
+                            207 ; absolute external ram data
+                            208 ;--------------------------------------------------------
+                            209 	.area _DABS (ABS)
+                            210 ;--------------------------------------------------------
+                            211 ; global & static initialisations
+                            212 ;--------------------------------------------------------
+                            213 	.area _HOME
+                            214 	.area _GSINIT
+                            215 	.area _GSFINAL
+                            216 	.area _GSINIT
+                            217 ;--------------------------------------------------------
+                            218 ; Home
+                            219 ;--------------------------------------------------------
+                            220 	.area _HOME
+                            221 	.area _HOME
+                            222 ;--------------------------------------------------------
+                            223 ; code
+                            224 ;--------------------------------------------------------
+                            225 	.area _CODE
+                            226 ;main.c:39: void PrintFloat(float value, char round) // max round == 4
+                            227 ;	---------------------------------
+                            228 ; Function PrintFloat
+                            229 ; ---------------------------------
+   0000                     230 _PrintFloat::
+   0000 DD E5         [15]  231 	push	ix
+   0002 DD 21 00 00   [14]  232 	ld	ix,#0
+   0006 DD 39         [15]  233 	add	ix,sp
+   0008 21 E5 FF      [10]  234 	ld	hl, #-27
+   000B 39            [11]  235 	add	hl, sp
+   000C F9            [ 6]  236 	ld	sp, hl
+                            237 ;main.c:42: Itoa((int)value, buffer, 10);
+   000D 21 04 00      [10]  238 	ld	hl, #4
+   0010 39            [11]  239 	add	hl, sp
+   0011 DD 75 FA      [19]  240 	ld	-6 (ix), l
+   0014 DD 74 FB      [19]  241 	ld	-5 (ix), h
+   0017 E5            [11]  242 	push	hl
+   0018 DD 6E 06      [19]  243 	ld	l, 6 (ix)
+   001B DD 66 07      [19]  244 	ld	h, 7 (ix)
+   001E E5            [11]  245 	push	hl
+   001F DD 6E 04      [19]  246 	ld	l, 4 (ix)
+   0022 DD 66 05      [19]  247 	ld	h, 5 (ix)
+   0025 E5            [11]  248 	push	hl
+   0026 CDr00r00      [17]  249 	call	___fs2sint
+   0029 F1            [10]  250 	pop	af
+   002A F1            [10]  251 	pop	af
+   002B EB            [ 4]  252 	ex	de,hl
+   002C C1            [10]  253 	pop	bc
+   002D D5            [11]  254 	push	de
+   002E 21 0A 00      [10]  255 	ld	hl, #0x000a
+   0031 E5            [11]  256 	push	hl
+   0032 C5            [11]  257 	push	bc
+   0033 D5            [11]  258 	push	de
+   0034 CDr00r00      [17]  259 	call	_Itoa
+   0037 21 06 00      [10]  260 	ld	hl, #6
+   003A 39            [11]  261 	add	hl, sp
+   003B F9            [ 6]  262 	ld	sp, hl
+   003C D1            [10]  263 	pop	de
+                            264 ;main.c:43: StrConcat(buffer, ".");
+   003D 21r84r01      [10]  265 	ld	hl, #___str_0+0
+   0040 DD 4E FA      [19]  266 	ld	c, -6 (ix)
+   0043 DD 46 FB      [19]  267 	ld	b, -5 (ix)
+   0046 D5            [11]  268 	push	de
+   0047 E5            [11]  269 	push	hl
+   0048 C5            [11]  270 	push	bc
+   0049 CDr00r00      [17]  271 	call	_StrConcat
+   004C F1            [10]  272 	pop	af
+   004D F1            [10]  273 	pop	af
+   004E D1            [10]  274 	pop	de
+                            275 ;main.c:46: Itoa((int)((value-(int)value)*powf(10.0f, round)), buffer2, 10);
+   004F 21 0C 00      [10]  276 	ld	hl, #12
+   0052 39            [11]  277 	add	hl, sp
+   0053 DD 75 FC      [19]  278 	ld	-4 (ix), l
+   0056 DD 74 FD      [19]  279 	ld	-3 (ix), h
+   0059 E5            [11]  280 	push	hl
+   005A D5            [11]  281 	push	de
+   005B CDr00r00      [17]  282 	call	___sint2fs
+   005E F1            [10]  283 	pop	af
+   005F D5            [11]  284 	push	de
+   0060 E5            [11]  285 	push	hl
+   0061 DD 6E 06      [19]  286 	ld	l, 6 (ix)
+   0064 DD 66 07      [19]  287 	ld	h, 7 (ix)
+   0067 E5            [11]  288 	push	hl
+   0068 DD 6E 04      [19]  289 	ld	l, 4 (ix)
+   006B DD 66 05      [19]  290 	ld	h, 5 (ix)
+   006E E5            [11]  291 	push	hl
+   006F CDr00r00      [17]  292 	call	___fssub
+   0072 F1            [10]  293 	pop	af
+   0073 F1            [10]  294 	pop	af
+   0074 F1            [10]  295 	pop	af
+   0075 F1            [10]  296 	pop	af
+   0076 DD 75 E5      [19]  297 	ld	-27 (ix), l
+   0079 DD 74 E6      [19]  298 	ld	-26 (ix), h
+   007C DD 73 E7      [19]  299 	ld	-25 (ix), e
+   007F DD 72 E8      [19]  300 	ld	-24 (ix), d
+   0082 DD 7E 08      [19]  301 	ld	a, 8 (ix)
+   0085 F5            [11]  302 	push	af
+   0086 33            [ 6]  303 	inc	sp
+   0087 CDr00r00      [17]  304 	call	___uchar2fs
+   008A 33            [ 6]  305 	inc	sp
+   008B D5            [11]  306 	push	de
+   008C E5            [11]  307 	push	hl
+   008D 21 20 41      [10]  308 	ld	hl, #0x4120
+   0090 E5            [11]  309 	push	hl
+   0091 21 00 00      [10]  310 	ld	hl, #0x0000
+   0094 E5            [11]  311 	push	hl
+   0095 CDr00r00      [17]  312 	call	_powf
+   0098 F1            [10]  313 	pop	af
+   0099 F1            [10]  314 	pop	af
+   009A F1            [10]  315 	pop	af
+   009B F1            [10]  316 	pop	af
+   009C D5            [11]  317 	push	de
+   009D E5            [11]  318 	push	hl
+   009E DD 6E E7      [19]  319 	ld	l, -25 (ix)
+   00A1 DD 66 E8      [19]  320 	ld	h, -24 (ix)
+   00A4 E5            [11]  321 	push	hl
+   00A5 DD 6E E5      [19]  322 	ld	l, -27 (ix)
+   00A8 DD 66 E6      [19]  323 	ld	h, -26 (ix)
+   00AB E5            [11]  324 	push	hl
+   00AC CDr00r00      [17]  325 	call	___fsmul
+   00AF F1            [10]  326 	pop	af
+   00B0 F1            [10]  327 	pop	af
+   00B1 F1            [10]  328 	pop	af
+   00B2 F1            [10]  329 	pop	af
+   00B3 D5            [11]  330 	push	de
+   00B4 E5            [11]  331 	push	hl
+   00B5 CDr00r00      [17]  332 	call	___fs2sint
+   00B8 F1            [10]  333 	pop	af
+   00B9 F1            [10]  334 	pop	af
+   00BA C1            [10]  335 	pop	bc
+   00BB 11 0A 00      [10]  336 	ld	de, #0x000a
+   00BE D5            [11]  337 	push	de
+   00BF C5            [11]  338 	push	bc
+   00C0 E5            [11]  339 	push	hl
+   00C1 CDr00r00      [17]  340 	call	_Itoa
+   00C4 21 06 00      [10]  341 	ld	hl, #6
+   00C7 39            [11]  342 	add	hl, sp
+   00C8 F9            [ 6]  343 	ld	sp, hl
+                            344 ;main.c:47: if (StrLen(buffer2) < round) 
+   00C9 DD 4E FC      [19]  345 	ld	c, -4 (ix)
+   00CC DD 46 FD      [19]  346 	ld	b, -3 (ix)
+   00CF C5            [11]  347 	push	bc
+   00D0 CDr00r00      [17]  348 	call	_StrLen
+   00D3 F1            [10]  349 	pop	af
+   00D4 DD 4E 08      [19]  350 	ld	c, 8 (ix)
+   00D7 06 00         [ 7]  351 	ld	b, #0x00
+   00D9 7D            [ 4]  352 	ld	a, l
+   00DA 91            [ 4]  353 	sub	a, c
+   00DB 7C            [ 4]  354 	ld	a, h
+   00DC 98            [ 4]  355 	sbc	a, b
+   00DD E2rE2r00      [10]  356 	jp	PO, 00110$
+   00E0 EE 80         [ 7]  357 	xor	a, #0x80
+   00E2                     358 00110$:
+   00E2 F2r42r01      [10]  359 	jp	P, 00102$
+                            360 ;main.c:50: memset(buffer3,'0', round-StrLen(buffer2));
+   00E5 21 11 00      [10]  361 	ld	hl, #17
+   00E8 39            [11]  362 	add	hl, sp
+   00E9 DD 75 FE      [19]  363 	ld	-2 (ix), l
+   00EC DD 74 FF      [19]  364 	ld	-1 (ix), h
+   00EF EB            [ 4]  365 	ex	de,hl
+   00F0 DD 6E FC      [19]  366 	ld	l, -4 (ix)
+   00F3 DD 66 FD      [19]  367 	ld	h, -3 (ix)
+   00F6 C5            [11]  368 	push	bc
+   00F7 D5            [11]  369 	push	de
+   00F8 E5            [11]  370 	push	hl
+   00F9 CDr00r00      [17]  371 	call	_StrLen
+   00FC F1            [10]  372 	pop	af
+   00FD D1            [10]  373 	pop	de
+   00FE C1            [10]  374 	pop	bc
+   00FF 79            [ 4]  375 	ld	a, c
+   0100 95            [ 4]  376 	sub	a, l
+   0101 4F            [ 4]  377 	ld	c, a
+   0102 78            [ 4]  378 	ld	a, b
+   0103 9C            [ 4]  379 	sbc	a, h
+   0104 47            [ 4]  380 	ld	b, a
+   0105 C5            [11]  381 	push	bc
+   0106 21 30 00      [10]  382 	ld	hl, #0x0030
+   0109 E5            [11]  383 	push	hl
+   010A D5            [11]  384 	push	de
+   010B CDr00r00      [17]  385 	call	_memset
+   010E 21 06 00      [10]  386 	ld	hl, #6
+   0111 39            [11]  387 	add	hl, sp
+   0112 F9            [ 6]  388 	ld	sp, hl
+                            389 ;main.c:51: buffer3[round-StrLen(buffer2)] = '\0';
+   0113 DD 4E FC      [19]  390 	ld	c, -4 (ix)
+   0116 DD 46 FD      [19]  391 	ld	b, -3 (ix)
+   0119 C5            [11]  392 	push	bc
+   011A CDr00r00      [17]  393 	call	_StrLen
+   011D F1            [10]  394 	pop	af
+   011E DD 7E 08      [19]  395 	ld	a, 8 (ix)
+   0121 95            [ 4]  396 	sub	a, l
+   0122 4F            [ 4]  397 	ld	c, a
+   0123 17            [ 4]  398 	rla
+   0124 9F            [ 4]  399 	sbc	a, a
+   0125 47            [ 4]  400 	ld	b, a
+   0126 DD 6E FE      [19]  401 	ld	l, -2 (ix)
+   0129 DD 66 FF      [19]  402 	ld	h, -1 (ix)
+   012C 09            [11]  403 	add	hl, bc
+   012D 36 00         [10]  404 	ld	(hl), #0x00
+                            405 ;main.c:52: StrConcat(buffer, buffer3);
+   012F DD 5E FE      [19]  406 	ld	e, -2 (ix)
+   0132 DD 56 FF      [19]  407 	ld	d, -1 (ix)
+   0135 DD 4E FA      [19]  408 	ld	c, -6 (ix)
+   0138 DD 46 FB      [19]  409 	ld	b, -5 (ix)
+   013B D5            [11]  410 	push	de
+   013C C5            [11]  411 	push	bc
+   013D CDr00r00      [17]  412 	call	_StrConcat
+   0140 F1            [10]  413 	pop	af
+   0141 F1            [10]  414 	pop	af
+   0142                     415 00102$:
+                            416 ;main.c:54: StrConcat(buffer, buffer2);
+   0142 DD 5E FC      [19]  417 	ld	e, -4 (ix)
+   0145 DD 56 FD      [19]  418 	ld	d, -3 (ix)
+   0148 DD 4E FA      [19]  419 	ld	c, -6 (ix)
+   014B DD 46 FB      [19]  420 	ld	b, -5 (ix)
+   014E D5            [11]  421 	push	de
+   014F C5            [11]  422 	push	bc
+   0150 CDr00r00      [17]  423 	call	_StrConcat
+   0153 F1            [10]  424 	pop	af
+   0154 F1            [10]  425 	pop	af
+                            426 ;main.c:56: Print(buffer);
+   0155 DD 4E FA      [19]  427 	ld	c, -6 (ix)
+   0158 DD 46 FB      [19]  428 	ld	b, -5 (ix)
+   015B C5            [11]  429 	push	bc
+   015C CDr00r00      [17]  430 	call	_Print
+                            431 ;main.c:57: }
+   015F DD F9         [10]  432 	ld	sp,ix
+   0161 DD E1         [14]  433 	pop	ix
+   0163 C9            [10]  434 	ret
+   0164                     435 _Done_Version:
+   0164 4D 61 64 65 20 77   436 	.ascii "Made with FUSION-C 1.2 (ebsoft)"
+        69 74 68 20 46 55
+        53 49 4F 4E 2D 43
+        20 31 2E 32 20 28
+        65 62 73 6F 66 74
+        29
+   0183 00                  437 	.db 0x00
+   0184                     438 ___str_0:
+   0184 2E                  439 	.ascii "."
+   0185 00                  440 	.db 0x00
+                            441 ;main.c:59: int main() {
+                            442 ;	---------------------------------
+                            443 ; Function main
+                            444 ; ---------------------------------
+   0186                     445 _main::
+   0186 DD E5         [15]  446 	push	ix
+   0188 DD 21 00 00   [14]  447 	ld	ix,#0
+   018C DD 39         [15]  448 	add	ix,sp
+   018E 21 F8 FF      [10]  449 	ld	hl, #-8
+   0191 39            [11]  450 	add	hl, sp
+   0192 F9            [ 6]  451 	ld	sp, hl
+                            452 ;main.c:60: Screen(0);
+   0193 AF            [ 4]  453 	xor	a, a
+   0194 F5            [11]  454 	push	af
+   0195 33            [ 6]  455 	inc	sp
+   0196 CDr00r00      [17]  456 	call	_Screen
+   0199 33            [ 6]  457 	inc	sp
+                            458 ;main.c:61: Width(80);
+   019A 3E 50         [ 7]  459 	ld	a, #0x50
+   019C F5            [11]  460 	push	af
+   019D 33            [ 6]  461 	inc	sp
+   019E CDr00r00      [17]  462 	call	_Width
+   01A1 33            [ 6]  463 	inc	sp
+                            464 ;main.c:62: Locate(0,0);
+   01A2 AF            [ 4]  465 	xor	a, a
+   01A3 F5            [11]  466 	push	af
+   01A4 33            [ 6]  467 	inc	sp
+   01A5 AF            [ 4]  468 	xor	a, a
+   01A6 F5            [11]  469 	push	af
+   01A7 33            [ 6]  470 	inc	sp
+   01A8 CDr00r00      [17]  471 	call	_Locate
+   01AB F1            [10]  472 	pop	af
+                            473 ;main.c:63: SetColors(15,1,1);
+   01AC 11 01 01      [10]  474 	ld	de, #0x0101
+   01AF D5            [11]  475 	push	de
+   01B0 3E 0F         [ 7]  476 	ld	a, #0x0f
+   01B2 F5            [11]  477 	push	af
+   01B3 33            [ 6]  478 	inc	sp
+   01B4 CDr00r00      [17]  479 	call	_SetColors
+                            480 ;main.c:65: _1 = i2x(1);   _2 = i2x(2);
+   01B7 33            [ 6]  481 	inc	sp
+   01B8 21 01 00      [10]  482 	ld	hl,#0x0001
+   01BB E3            [19]  483 	ex	(sp),hl
+   01BC CDr00r00      [17]  484 	call	_int2fixed
+   01BF F1            [10]  485 	pop	af
+   01C0 22r16r00      [16]  486 	ld	(__1), hl
+   01C3 21 02 00      [10]  487 	ld	hl, #0x0002
+   01C6 E5            [11]  488 	push	hl
+   01C7 CDr00r00      [17]  489 	call	_int2fixed
+   01CA F1            [10]  490 	pop	af
+   01CB 22r18r00      [16]  491 	ld	(__2), hl
+                            492 ;main.c:66: _5 = i2x(5);   _8 = i2x(8);    
+   01CE 21 05 00      [10]  493 	ld	hl, #0x0005
+   01D1 E5            [11]  494 	push	hl
+   01D2 CDr00r00      [17]  495 	call	_int2fixed
+   01D5 F1            [10]  496 	pop	af
+   01D6 22r1Ar00      [16]  497 	ld	(__5), hl
+   01D9 21 08 00      [10]  498 	ld	hl, #0x0008
+   01DC E5            [11]  499 	push	hl
+   01DD CDr00r00      [17]  500 	call	_int2fixed
+   01E0 F1            [10]  501 	pop	af
+   01E1 22r1Cr00      [16]  502 	ld	(__8), hl
+                            503 ;main.c:67: _15 = i2x(15); _30 = i2x(30);
+   01E4 21 0F 00      [10]  504 	ld	hl, #0x000f
+   01E7 E5            [11]  505 	push	hl
+   01E8 CDr00r00      [17]  506 	call	_int2fixed
+   01EB F1            [10]  507 	pop	af
+   01EC 22r1Er00      [16]  508 	ld	(__15), hl
+   01EF 21 1E 00      [10]  509 	ld	hl, #0x001e
+   01F2 E5            [11]  510 	push	hl
+   01F3 CDr00r00      [17]  511 	call	_int2fixed
+   01F6 F1            [10]  512 	pop	af
+   01F7 22r20r00      [16]  513 	ld	(__30), hl
+                            514 ;main.c:69: j_lim = 6.28f; // f2x(6.28f);
+   01FA FD 21r5Er00   [14]  515 	ld	iy, #_j_lim
+   01FE FD 36 00 C3   [19]  516 	ld	0 (iy), #0xc3
+   0202 FD 36 01 F5   [19]  517 	ld	1 (iy), #0xf5
+   0206 FD 36 02 C8   [19]  518 	ld	2 (iy), #0xc8
+   020A FD 36 03 40   [19]  519 	ld	3 (iy), #0x40
+                            520 ;main.c:70: j_inc = 0.21f; // f2x(0.07f);
+   020E FD 21r62r00   [14]  521 	ld	iy, #_j_inc
+   0212 FD 36 00 3D   [19]  522 	ld	0 (iy), #0x3d
+   0216 FD 36 01 0A   [19]  523 	ld	1 (iy), #0x0a
+   021A FD 36 02 57   [19]  524 	ld	2 (iy), #0x57
+   021E FD 36 03 3E   [19]  525 	ld	3 (iy), #0x3e
+                            526 ;main.c:71: i_lim = 6.28f; // f2x(6.28f);
+   0222 FD 21r66r00   [14]  527 	ld	iy, #_i_lim
+   0226 FD 36 00 C3   [19]  528 	ld	0 (iy), #0xc3
+   022A FD 36 01 F5   [19]  529 	ld	1 (iy), #0xf5
+   022E FD 36 02 C8   [19]  530 	ld	2 (iy), #0xc8
+   0232 FD 36 03 40   [19]  531 	ld	3 (iy), #0x40
+                            532 ;main.c:72: i_inc = 0.06f; // f2x(0.02f);
+   0236 FD 21r6Ar00   [14]  533 	ld	iy, #_i_inc
+   023A FD 36 00 8F   [19]  534 	ld	0 (iy), #0x8f
+   023E FD 36 01 C2   [19]  535 	ld	1 (iy), #0xc2
+   0242 FD 36 02 75   [19]  536 	ld	2 (iy), #0x75
+   0246 FD 36 03 3D   [19]  537 	ld	3 (iy), #0x3d
+                            538 ;main.c:74: A_inc = 0.04f; // f2x(0.04f);
+   024A FD 21r4Er00   [14]  539 	ld	iy, #_A_inc
+   024E FD 36 00 0A   [19]  540 	ld	0 (iy), #0x0a
+   0252 FD 36 01 D7   [19]  541 	ld	1 (iy), #0xd7
+   0256 FD 36 02 23   [19]  542 	ld	2 (iy), #0x23
+   025A FD 36 03 3D   [19]  543 	ld	3 (iy), #0x3d
+                            544 ;main.c:75: B_inc = 0.02f; // f2x(0.02f);
+   025E FD 21r52r00   [14]  545 	ld	iy, #_B_inc
+   0262 FD 36 00 0A   [19]  546 	ld	0 (iy), #0x0a
+   0266 FD 36 01 D7   [19]  547 	ld	1 (iy), #0xd7
+   026A FD 36 02 A3   [19]  548 	ld	2 (iy), #0xa3
+   026E FD 36 03 3C   [19]  549 	ld	3 (iy), #0x3c
+                            550 ;main.c:76: A = 0; B = 0;
+   0272 FD 21r46r00   [14]  551 	ld	iy, #_A
+   0276 FD 36 00 00   [19]  552 	ld	0 (iy), #0x00
+   027A FD 36 01 00   [19]  553 	ld	1 (iy), #0x00
+   027E FD 36 02 00   [19]  554 	ld	2 (iy), #0x00
+   0282 FD 36 03 00   [19]  555 	ld	3 (iy), #0x00
+   0286 FD 21r4Ar00   [14]  556 	ld	iy, #_B
+   028A FD 36 00 00   [19]  557 	ld	0 (iy), #0x00
+   028E FD 36 01 00   [19]  558 	ld	1 (iy), #0x00
+   0292 FD 36 02 00   [19]  559 	ld	2 (iy), #0x00
+   0296 FD 36 03 00   [19]  560 	ld	3 (iy), #0x00
+                            561 ;main.c:79: Print("Loading...");
+   029A 21rAFr0A      [10]  562 	ld	hl, #___str_2
+   029D E5            [11]  563 	push	hl
+   029E CDr00r00      [17]  564 	call	_Print
+   02A1 F1            [10]  565 	pop	af
+                            566 ;main.c:80: i_max=0; j_max=0;
+   02A2 21 00 00      [10]  567 	ld	hl, #0x0000
+   02A5 22r3Ar00      [16]  568 	ld	(_i_max), hl
+   02A8 2E 00         [ 7]  569 	ld	l, #0x00
+   02AA 22r3Cr00      [16]  570 	ld	(_j_max), hl
+                            571 ;main.c:81: for(fj=0; fj < j_lim; fj += j_inc) {
+   02AD FD 21r5Ar00   [14]  572 	ld	iy, #_fj
+   02B1 FD 36 00 00   [19]  573 	ld	0 (iy), #0x00
+   02B5 FD 36 01 00   [19]  574 	ld	1 (iy), #0x00
+   02B9 FD 36 02 00   [19]  575 	ld	2 (iy), #0x00
+   02BD FD 36 03 00   [19]  576 	ld	3 (iy), #0x00
+   02C1                     577 00118$:
+   02C1 2Ar60r00      [16]  578 	ld	hl, (_j_lim + 2)
+   02C4 E5            [11]  579 	push	hl
+   02C5 2Ar5Er00      [16]  580 	ld	hl, (_j_lim)
+   02C8 E5            [11]  581 	push	hl
+   02C9 2Ar5Cr00      [16]  582 	ld	hl, (_fj + 2)
+   02CC E5            [11]  583 	push	hl
+   02CD 2Ar5Ar00      [16]  584 	ld	hl, (_fj)
+   02D0 E5            [11]  585 	push	hl
+   02D1 CDr00r00      [17]  586 	call	___fslt
+   02D4 F1            [10]  587 	pop	af
+   02D5 F1            [10]  588 	pop	af
+   02D6 F1            [10]  589 	pop	af
+   02D7 F1            [10]  590 	pop	af
+   02D8 DD 75 FF      [19]  591 	ld	-1 (ix), l
+   02DB 7D            [ 4]  592 	ld	a, l
+   02DC B7            [ 4]  593 	or	a, a
+   02DD CArAFr03      [10]  594 	jp	Z, 00101$
+                            595 ;main.c:82: lt_cos_j[j_max] = f2x(cos(fj));
+   02E0 2Ar3Cr00      [16]  596 	ld	hl, (_j_max)
+   02E3 29            [11]  597 	add	hl, hl
+   02E4 3ErF2         [ 7]  598 	ld	a, #<(_lt_cos_j)
+   02E6 85            [ 4]  599 	add	a, l
+   02E7 DD 77 FC      [19]  600 	ld	-4 (ix), a
+   02EA 3Es02         [ 7]  601 	ld	a, #>(_lt_cos_j)
+   02EC 8C            [ 4]  602 	adc	a, h
+   02ED DD 77 FD      [19]  603 	ld	-3 (ix), a
+   02F0 2Ar5Cr00      [16]  604 	ld	hl, (_fj + 2)
+   02F3 E5            [11]  605 	push	hl
+   02F4 2Ar5Ar00      [16]  606 	ld	hl, (_fj)
+   02F7 E5            [11]  607 	push	hl
+   02F8 CDr00r00      [17]  608 	call	_cosf
+   02FB F1            [10]  609 	pop	af
+   02FC F1            [10]  610 	pop	af
+   02FD DD 75 F8      [19]  611 	ld	-8 (ix), l
+   0300 DD 74 F9      [19]  612 	ld	-7 (ix), h
+   0303 DD 73 FA      [19]  613 	ld	-6 (ix), e
+   0306 DD 72 FB      [19]  614 	ld	-5 (ix), d
+   0309 D5            [11]  615 	push	de
+   030A DD 6E F8      [19]  616 	ld	l, -8 (ix)
+   030D DD 66 F9      [19]  617 	ld	h, -7 (ix)
+   0310 E5            [11]  618 	push	hl
+   0311 CDr00r00      [17]  619 	call	_float2fixed
+   0314 F1            [10]  620 	pop	af
+   0315 F1            [10]  621 	pop	af
+   0316 DD 75 FE      [19]  622 	ld	-2 (ix), l
+   0319 DD 74 FF      [19]  623 	ld	-1 (ix), h
+   031C DD 6E FC      [19]  624 	ld	l, -4 (ix)
+   031F DD 66 FD      [19]  625 	ld	h, -3 (ix)
+   0322 DD 7E FE      [19]  626 	ld	a, -2 (ix)
+   0325 77            [ 7]  627 	ld	(hl), a
+   0326 23            [ 6]  628 	inc	hl
+   0327 DD 7E FF      [19]  629 	ld	a, -1 (ix)
+   032A 77            [ 7]  630 	ld	(hl), a
+                            631 ;main.c:83: lt_sin_j[j_max] = f2x(sin(fj));
+   032B 2Ar3Cr00      [16]  632 	ld	hl, (_j_max)
+   032E 29            [11]  633 	add	hl, hl
+   032F 3Er2C         [ 7]  634 	ld	a, #<(_lt_sin_j)
+   0331 85            [ 4]  635 	add	a, l
+   0332 DD 77 FC      [19]  636 	ld	-4 (ix), a
+   0335 3Es06         [ 7]  637 	ld	a, #>(_lt_sin_j)
+   0337 8C            [ 4]  638 	adc	a, h
+   0338 DD 77 FD      [19]  639 	ld	-3 (ix), a
+   033B 2Ar5Cr00      [16]  640 	ld	hl, (_fj + 2)
+   033E E5            [11]  641 	push	hl
+   033F 2Ar5Ar00      [16]  642 	ld	hl, (_fj)
+   0342 E5            [11]  643 	push	hl
+   0343 CDr00r00      [17]  644 	call	_sinf
+   0346 F1            [10]  645 	pop	af
+   0347 F1            [10]  646 	pop	af
+   0348 DD 75 F8      [19]  647 	ld	-8 (ix), l
+   034B DD 74 F9      [19]  648 	ld	-7 (ix), h
+   034E DD 73 FA      [19]  649 	ld	-6 (ix), e
+   0351 DD 72 FB      [19]  650 	ld	-5 (ix), d
+   0354 D5            [11]  651 	push	de
+   0355 DD 6E F8      [19]  652 	ld	l, -8 (ix)
+   0358 DD 66 F9      [19]  653 	ld	h, -7 (ix)
+   035B E5            [11]  654 	push	hl
+   035C CDr00r00      [17]  655 	call	_float2fixed
+   035F F1            [10]  656 	pop	af
+   0360 F1            [10]  657 	pop	af
+   0361 DD 75 FE      [19]  658 	ld	-2 (ix), l
+   0364 DD 74 FF      [19]  659 	ld	-1 (ix), h
+   0367 DD 6E FC      [19]  660 	ld	l, -4 (ix)
+   036A DD 66 FD      [19]  661 	ld	h, -3 (ix)
+   036D DD 7E FE      [19]  662 	ld	a, -2 (ix)
+   0370 77            [ 7]  663 	ld	(hl), a
+   0371 23            [ 6]  664 	inc	hl
+   0372 DD 7E FF      [19]  665 	ld	a, -1 (ix)
+   0375 77            [ 7]  666 	ld	(hl), a
+                            667 ;main.c:84: j_max++;
+   0376 2Ar3Cr00      [16]  668 	ld	hl, (_j_max)
+   0379 23            [ 6]  669 	inc	hl
+   037A 22r3Cr00      [16]  670 	ld	(_j_max), hl
+                            671 ;main.c:81: for(fj=0; fj < j_lim; fj += j_inc) {
+   037D 2Ar64r00      [16]  672 	ld	hl, (_j_inc + 2)
+   0380 E5            [11]  673 	push	hl
+   0381 2Ar62r00      [16]  674 	ld	hl, (_j_inc)
+   0384 E5            [11]  675 	push	hl
+   0385 2Ar5Cr00      [16]  676 	ld	hl, (_fj + 2)
+   0388 E5            [11]  677 	push	hl
+   0389 2Ar5Ar00      [16]  678 	ld	hl, (_fj)
+   038C E5            [11]  679 	push	hl
+   038D CDr00r00      [17]  680 	call	___fsadd
+   0390 F1            [10]  681 	pop	af
+   0391 F1            [10]  682 	pop	af
+   0392 F1            [10]  683 	pop	af
+   0393 F1            [10]  684 	pop	af
+   0394 DD 75 FC      [19]  685 	ld	-4 (ix), l
+   0397 DD 74 FD      [19]  686 	ld	-3 (ix), h
+   039A DD 73 FE      [19]  687 	ld	-2 (ix), e
+   039D DD 72 FF      [19]  688 	ld	-1 (ix), d
+   03A0 11r5Ar00      [10]  689 	ld	de, #_fj
+   03A3 21 04 00      [10]  690 	ld	hl, #4
+   03A6 39            [11]  691 	add	hl, sp
+   03A7 01 04 00      [10]  692 	ld	bc, #4
+   03AA ED B0         [21]  693 	ldir
+   03AC C3rC1r02      [10]  694 	jp	00118$
+   03AF                     695 00101$:
+                            696 ;main.c:86: for(fi=0; fi < i_lim; fi += i_inc) {
+   03AF FD 21r56r00   [14]  697 	ld	iy, #_fi
+   03B3 FD 36 00 00   [19]  698 	ld	0 (iy), #0x00
+   03B7 FD 36 01 00   [19]  699 	ld	1 (iy), #0x00
+   03BB FD 36 02 00   [19]  700 	ld	2 (iy), #0x00
+   03BF FD 36 03 00   [19]  701 	ld	3 (iy), #0x00
+   03C3                     702 00121$:
+   03C3 2Ar68r00      [16]  703 	ld	hl, (_i_lim + 2)
+   03C6 E5            [11]  704 	push	hl
+   03C7 2Ar66r00      [16]  705 	ld	hl, (_i_lim)
+   03CA E5            [11]  706 	push	hl
+   03CB 2Ar58r00      [16]  707 	ld	hl, (_fi + 2)
+   03CE E5            [11]  708 	push	hl
+   03CF 2Ar56r00      [16]  709 	ld	hl, (_fi)
+   03D2 E5            [11]  710 	push	hl
+   03D3 CDr00r00      [17]  711 	call	___fslt
+   03D6 F1            [10]  712 	pop	af
+   03D7 F1            [10]  713 	pop	af
+   03D8 F1            [10]  714 	pop	af
+   03D9 F1            [10]  715 	pop	af
+   03DA DD 75 FF      [19]  716 	ld	-1 (ix), l
+   03DD 7D            [ 4]  717 	ld	a, l
+   03DE B7            [ 4]  718 	or	a, a
+   03DF CArC9r04      [10]  719 	jp	Z, 00102$
+                            720 ;main.c:87: lt_cos_i[i_max] = f2x(cos(fi));
+   03E2 FD 21r3Ar00   [14]  721 	ld	iy, #_i_max
+   03E6 FD 7E 00      [19]  722 	ld	a, 0 (iy)
+   03E9 DD 77 FE      [19]  723 	ld	-2 (ix), a
+   03EC FD 7E 01      [19]  724 	ld	a, 1 (iy)
+   03EF DD 77 FF      [19]  725 	ld	-1 (ix), a
+   03F2 DD CB FE 26   [23]  726 	sla	-2 (ix)
+   03F6 DD CB FF 16   [23]  727 	rl	-1 (ix)
+   03FA DD 7E FE      [19]  728 	ld	a, -2 (ix)
+   03FD C6r6E         [ 7]  729 	add	a, #<(_lt_cos_i)
+   03FF DD 77 FC      [19]  730 	ld	-4 (ix), a
+   0402 DD 7E FF      [19]  731 	ld	a, -1 (ix)
+   0405 CEs00         [ 7]  732 	adc	a, #>(_lt_cos_i)
+   0407 DD 77 FD      [19]  733 	ld	-3 (ix), a
+   040A 2Ar58r00      [16]  734 	ld	hl, (_fi + 2)
+   040D E5            [11]  735 	push	hl
+   040E 2Ar56r00      [16]  736 	ld	hl, (_fi)
+   0411 E5            [11]  737 	push	hl
+   0412 CDr00r00      [17]  738 	call	_cosf
+   0415 F1            [10]  739 	pop	af
+   0416 F1            [10]  740 	pop	af
+   0417 DD 75 F8      [19]  741 	ld	-8 (ix), l
+   041A DD 74 F9      [19]  742 	ld	-7 (ix), h
+   041D DD 73 FA      [19]  743 	ld	-6 (ix), e
+   0420 DD 72 FB      [19]  744 	ld	-5 (ix), d
+   0423 D5            [11]  745 	push	de
+   0424 DD 6E F8      [19]  746 	ld	l, -8 (ix)
+   0427 DD 66 F9      [19]  747 	ld	h, -7 (ix)
+   042A E5            [11]  748 	push	hl
+   042B CDr00r00      [17]  749 	call	_float2fixed
+   042E F1            [10]  750 	pop	af
+   042F F1            [10]  751 	pop	af
+   0430 DD 75 FE      [19]  752 	ld	-2 (ix), l
+   0433 DD 74 FF      [19]  753 	ld	-1 (ix), h
+   0436 DD 6E FC      [19]  754 	ld	l, -4 (ix)
+   0439 DD 66 FD      [19]  755 	ld	h, -3 (ix)
+   043C DD 7E FE      [19]  756 	ld	a, -2 (ix)
+   043F 77            [ 7]  757 	ld	(hl), a
+   0440 23            [ 6]  758 	inc	hl
+   0441 DD 7E FF      [19]  759 	ld	a, -1 (ix)
+   0444 77            [ 7]  760 	ld	(hl), a
+                            761 ;main.c:88: lt_sin_i[i_max] = f2x(sin(fi));
+   0445 2Ar3Ar00      [16]  762 	ld	hl, (_i_max)
+   0448 29            [11]  763 	add	hl, hl
+   0449 3ErA8         [ 7]  764 	ld	a, #<(_lt_sin_i)
+   044B 85            [ 4]  765 	add	a, l
+   044C DD 77 FC      [19]  766 	ld	-4 (ix), a
+   044F 3Es03         [ 7]  767 	ld	a, #>(_lt_sin_i)
+   0451 8C            [ 4]  768 	adc	a, h
+   0452 DD 77 FD      [19]  769 	ld	-3 (ix), a
+   0455 2Ar58r00      [16]  770 	ld	hl, (_fi + 2)
+   0458 E5            [11]  771 	push	hl
+   0459 2Ar56r00      [16]  772 	ld	hl, (_fi)
+   045C E5            [11]  773 	push	hl
+   045D CDr00r00      [17]  774 	call	_sinf
+   0460 F1            [10]  775 	pop	af
+   0461 F1            [10]  776 	pop	af
+   0462 DD 75 F8      [19]  777 	ld	-8 (ix), l
+   0465 DD 74 F9      [19]  778 	ld	-7 (ix), h
+   0468 DD 73 FA      [19]  779 	ld	-6 (ix), e
+   046B DD 72 FB      [19]  780 	ld	-5 (ix), d
+   046E D5            [11]  781 	push	de
+   046F DD 6E F8      [19]  782 	ld	l, -8 (ix)
+   0472 DD 66 F9      [19]  783 	ld	h, -7 (ix)
+   0475 E5            [11]  784 	push	hl
+   0476 CDr00r00      [17]  785 	call	_float2fixed
+   0479 F1            [10]  786 	pop	af
+   047A F1            [10]  787 	pop	af
+   047B DD 75 FE      [19]  788 	ld	-2 (ix), l
+   047E DD 74 FF      [19]  789 	ld	-1 (ix), h
+   0481 DD 6E FC      [19]  790 	ld	l, -4 (ix)
+   0484 DD 66 FD      [19]  791 	ld	h, -3 (ix)
+   0487 DD 7E FE      [19]  792 	ld	a, -2 (ix)
+   048A 77            [ 7]  793 	ld	(hl), a
+   048B 23            [ 6]  794 	inc	hl
+   048C DD 7E FF      [19]  795 	ld	a, -1 (ix)
+   048F 77            [ 7]  796 	ld	(hl), a
+                            797 ;main.c:89: i_max++;
+   0490 2Ar3Ar00      [16]  798 	ld	hl, (_i_max)
+   0493 23            [ 6]  799 	inc	hl
+   0494 22r3Ar00      [16]  800 	ld	(_i_max), hl
+                            801 ;main.c:86: for(fi=0; fi < i_lim; fi += i_inc) {
+   0497 2Ar6Cr00      [16]  802 	ld	hl, (_i_inc + 2)
+   049A E5            [11]  803 	push	hl
+   049B 2Ar6Ar00      [16]  804 	ld	hl, (_i_inc)
+   049E E5            [11]  805 	push	hl
+   049F 2Ar58r00      [16]  806 	ld	hl, (_fi + 2)
+   04A2 E5            [11]  807 	push	hl
+   04A3 2Ar56r00      [16]  808 	ld	hl, (_fi)
+   04A6 E5            [11]  809 	push	hl
+   04A7 CDr00r00      [17]  810 	call	___fsadd
+   04AA F1            [10]  811 	pop	af
+   04AB F1            [10]  812 	pop	af
+   04AC F1            [10]  813 	pop	af
+   04AD F1            [10]  814 	pop	af
+   04AE DD 75 FC      [19]  815 	ld	-4 (ix), l
+   04B1 DD 74 FD      [19]  816 	ld	-3 (ix), h
+   04B4 DD 73 FE      [19]  817 	ld	-2 (ix), e
+   04B7 DD 72 FF      [19]  818 	ld	-1 (ix), d
+   04BA 11r56r00      [10]  819 	ld	de, #_fi
+   04BD 21 04 00      [10]  820 	ld	hl, #4
+   04C0 39            [11]  821 	add	hl, sp
+   04C1 01 04 00      [10]  822 	ld	bc, #4
+   04C4 ED B0         [21]  823 	ldir
+   04C6 C3rC3r03      [10]  824 	jp	00121$
+   04C9                     825 00102$:
+                            826 ;main.c:91: Cls();
+   04C9 CDr00r00      [17]  827 	call	_Cls
+                            828 ;main.c:95: while(1) {
+   04CC                     829 00115$:
+                            830 ;main.c:96: SetRealTimer(0);
+   04CC 21 00 00      [10]  831 	ld	hl, #0x0000
+   04CF E5            [11]  832 	push	hl
+   04D0 CDr00r00      [17]  833 	call	_SetRealTimer
+   04D3 F1            [10]  834 	pop	af
+                            835 ;main.c:98: memset(b,32, sizeof b);
+   04D4 21rA2r14      [10]  836 	ld	hl, #_b
+   04D7 36 20         [10]  837 	ld	(hl), #0x20
+   04D9 5D            [ 4]  838 	ld	e, l
+   04DA 54            [ 4]  839 	ld	d, h
+   04DB 13            [ 6]  840 	inc	de
+   04DC 01 DF 06      [10]  841 	ld	bc, #0x06df
+   04DF ED B0         [21]  842 	ldir
+                            843 ;main.c:99: memset(z,0,sizeof z);
+   04E1 21rE2r06      [10]  844 	ld	hl, #_z
+   04E4 36 00         [10]  845 	ld	(hl), #0x00
+   04E6 5D            [ 4]  846 	ld	e, l
+   04E7 54            [ 4]  847 	ld	d, h
+   04E8 13            [ 6]  848 	inc	de
+   04E9 01 BF 0D      [10]  849 	ld	bc, #0x0dbf
+   04EC ED B0         [21]  850 	ldir
+                            851 ;main.c:101: g = f2x(cos(A)); e = f2x(sin(A));
+   04EE 2Ar48r00      [16]  852 	ld	hl, (_A + 2)
+   04F1 E5            [11]  853 	push	hl
+   04F2 2Ar46r00      [16]  854 	ld	hl, (_A)
+   04F5 E5            [11]  855 	push	hl
+   04F6 CDr00r00      [17]  856 	call	_cosf
+   04F9 F1            [10]  857 	pop	af
+   04FA F1            [10]  858 	pop	af
+   04FB DD 75 FC      [19]  859 	ld	-4 (ix), l
+   04FE DD 74 FD      [19]  860 	ld	-3 (ix), h
+   0501 DD 73 FE      [19]  861 	ld	-2 (ix), e
+   0504 DD 72 FF      [19]  862 	ld	-1 (ix), d
+   0507 D5            [11]  863 	push	de
+   0508 DD 6E FC      [19]  864 	ld	l, -4 (ix)
+   050B DD 66 FD      [19]  865 	ld	h, -3 (ix)
+   050E E5            [11]  866 	push	hl
+   050F CDr00r00      [17]  867 	call	_float2fixed
+   0512 F1            [10]  868 	pop	af
+   0513 F1            [10]  869 	pop	af
+   0514 DD 75 FE      [19]  870 	ld	-2 (ix), l
+   0517 DD 74 FF      [19]  871 	ld	-1 (ix), h
+   051A 22r08r00      [16]  872 	ld	(_g), hl
+   051D 2Ar48r00      [16]  873 	ld	hl, (_A + 2)
+   0520 E5            [11]  874 	push	hl
+   0521 2Ar46r00      [16]  875 	ld	hl, (_A)
+   0524 E5            [11]  876 	push	hl
+   0525 CDr00r00      [17]  877 	call	_sinf
+   0528 F1            [10]  878 	pop	af
+   0529 F1            [10]  879 	pop	af
+   052A DD 75 FC      [19]  880 	ld	-4 (ix), l
+   052D DD 74 FD      [19]  881 	ld	-3 (ix), h
+   0530 DD 73 FE      [19]  882 	ld	-2 (ix), e
+   0533 DD 72 FF      [19]  883 	ld	-1 (ix), d
+   0536 D5            [11]  884 	push	de
+   0537 DD 6E FC      [19]  885 	ld	l, -4 (ix)
+   053A DD 66 FD      [19]  886 	ld	h, -3 (ix)
+   053D E5            [11]  887 	push	hl
+   053E CDr00r00      [17]  888 	call	_float2fixed
+   0541 F1            [10]  889 	pop	af
+   0542 F1            [10]  890 	pop	af
+   0543 DD 75 FE      [19]  891 	ld	-2 (ix), l
+   0546 DD 74 FF      [19]  892 	ld	-1 (ix), h
+   0549 22r04r00      [16]  893 	ld	(_e), hl
+                            894 ;main.c:102: m = f2x(cos(B)); n = f2x(sin(B));
+   054C 2Ar4Cr00      [16]  895 	ld	hl, (_B + 2)
+   054F E5            [11]  896 	push	hl
+   0550 2Ar4Ar00      [16]  897 	ld	hl, (_B)
+   0553 E5            [11]  898 	push	hl
+   0554 CDr00r00      [17]  899 	call	_cosf
+   0557 F1            [10]  900 	pop	af
+   0558 F1            [10]  901 	pop	af
+   0559 DD 75 FC      [19]  902 	ld	-4 (ix), l
+   055C DD 74 FD      [19]  903 	ld	-3 (ix), h
+   055F DD 73 FE      [19]  904 	ld	-2 (ix), e
+   0562 DD 72 FF      [19]  905 	ld	-1 (ix), d
+   0565 D5            [11]  906 	push	de
+   0566 DD 6E FC      [19]  907 	ld	l, -4 (ix)
+   0569 DD 66 FD      [19]  908 	ld	h, -3 (ix)
+   056C E5            [11]  909 	push	hl
+   056D CDr00r00      [17]  910 	call	_float2fixed
+   0570 F1            [10]  911 	pop	af
+   0571 F1            [10]  912 	pop	af
+   0572 DD 75 FE      [19]  913 	ld	-2 (ix), l
+   0575 DD 74 FF      [19]  914 	ld	-1 (ix), h
+   0578 22r10r00      [16]  915 	ld	(_m), hl
+   057B 2Ar4Cr00      [16]  916 	ld	hl, (_B + 2)
+   057E E5            [11]  917 	push	hl
+   057F 2Ar4Ar00      [16]  918 	ld	hl, (_B)
+   0582 E5            [11]  919 	push	hl
+   0583 CDr00r00      [17]  920 	call	_sinf
+   0586 F1            [10]  921 	pop	af
+   0587 F1            [10]  922 	pop	af
+   0588 DD 75 FC      [19]  923 	ld	-4 (ix), l
+   058B DD 74 FD      [19]  924 	ld	-3 (ix), h
+   058E DD 73 FE      [19]  925 	ld	-2 (ix), e
+   0591 DD 72 FF      [19]  926 	ld	-1 (ix), d
+   0594 D5            [11]  927 	push	de
+   0595 DD 6E FC      [19]  928 	ld	l, -4 (ix)
+   0598 DD 66 FD      [19]  929 	ld	h, -3 (ix)
+   059B E5            [11]  930 	push	hl
+   059C CDr00r00      [17]  931 	call	_float2fixed
+   059F F1            [10]  932 	pop	af
+   05A0 F1            [10]  933 	pop	af
+   05A1 DD 75 FE      [19]  934 	ld	-2 (ix), l
+   05A4 DD 74 FF      [19]  935 	ld	-1 (ix), h
+   05A7 22r12r00      [16]  936 	ld	(_n), hl
+                            937 ;main.c:104: for(j=0; j < j_max; j++) {
+   05AA 21 00 00      [10]  938 	ld	hl, #0x0000
+   05AD 22r36r00      [16]  939 	ld	(_j), hl
+   05B0                     940 00127$:
+   05B0 21r3Cr00      [10]  941 	ld	hl, #_j_max
+   05B3 FD 21r36r00   [14]  942 	ld	iy, #_j
+   05B7 FD 7E 00      [19]  943 	ld	a, 0 (iy)
+   05BA 96            [ 7]  944 	sub	a, (hl)
+   05BB FD 7E 01      [19]  945 	ld	a, 1 (iy)
+   05BE 23            [ 6]  946 	inc	hl
+   05BF 9E            [ 7]  947 	sbc	a, (hl)
+   05C0 E2rC5r05      [10]  948 	jp	PO, 00227$
+   05C3 EE 80         [ 7]  949 	xor	a, #0x80
+   05C5                     950 00227$:
+   05C5 F2r6Er09      [10]  951 	jp	P, 00112$
+                            952 ;main.c:105: Locate(0, 22);
+   05C8 3E 16         [ 7]  953 	ld	a, #0x16
+   05CA F5            [11]  954 	push	af
+   05CB 33            [ 6]  955 	inc	sp
+   05CC AF            [ 4]  956 	xor	a, a
+   05CD F5            [11]  957 	push	af
+   05CE 33            [ 6]  958 	inc	sp
+   05CF CDr00r00      [17]  959 	call	_Locate
+                            960 ;main.c:106: putchar('\x01');
+   05D2 21 01 00      [10]  961 	ld	hl, #0x0001
+   05D5 E3            [19]  962 	ex	(sp),hl
+   05D6 CDr00r00      [17]  963 	call	_putchar
+   05D9 F1            [10]  964 	pop	af
+                            965 ;main.c:107: if (w>1) w=0;            
+   05DA 3E 01         [ 7]  966 	ld	a, #0x01
+   05DC FD 21r00r00   [14]  967 	ld	iy, #_w
+   05E0 FD BE 00      [19]  968 	cp	a, 0 (iy)
+   05E3 3E 00         [ 7]  969 	ld	a, #0x00
+   05E5 FD 9E 01      [19]  970 	sbc	a, 1 (iy)
+   05E8 E2rEDr05      [10]  971 	jp	PO, 00228$
+   05EB EE 80         [ 7]  972 	xor	a, #0x80
+   05ED                     973 00228$:
+   05ED F2rF6r05      [10]  974 	jp	P, 00104$
+   05F0 21 00 00      [10]  975 	ld	hl, #0x0000
+   05F3 22r00r00      [16]  976 	ld	(_w), hl
+   05F6                     977 00104$:
+                            978 ;main.c:108: putchar("\x56\x57"[w++]);
+   05F6 ED 4Br00r00   [20]  979 	ld	bc, (_w)
+   05FA 2Ar00r00      [16]  980 	ld	hl, (_w)
+   05FD 23            [ 6]  981 	inc	hl
+   05FE 22r00r00      [16]  982 	ld	(_w), hl
+   0601 21rBAr0A      [10]  983 	ld	hl, #___str_3
+   0604 09            [11]  984 	add	hl, bc
+   0605 DD 75 FE      [19]  985 	ld	-2 (ix), l
+   0608 DD 74 FF      [19]  986 	ld	-1 (ix), h
+   060B 7E            [ 7]  987 	ld	a, (hl)
+   060C DD 77 FF      [19]  988 	ld	-1 (ix), a
+   060F DD 77 FE      [19]  989 	ld	-2 (ix), a
+   0612 AF            [ 4]  990 	xor	a, a
+   0613 DD 77 FF      [19]  991 	ld	-1 (ix), a
+   0616 DD 6E FE      [19]  992 	ld	l, -2 (ix)
+   0619 DD 66 FF      [19]  993 	ld	h, -1 (ix)
+   061C E5            [11]  994 	push	hl
+   061D CDr00r00      [17]  995 	call	_putchar
+   0620 F1            [10]  996 	pop	af
+                            997 ;main.c:110: d = lt_cos_j[j]; f = lt_sin_j[j];
+   0621 ED 4Br36r00   [20]  998 	ld	bc, (_j)
+   0625 CB 21         [ 8]  999 	sla	c
+   0627 CB 10         [ 8] 1000 	rl	b
+   0629 21rF2r02      [10] 1001 	ld	hl, #_lt_cos_j
+   062C 09            [11] 1002 	add	hl, bc
+   062D 7E            [ 7] 1003 	ld	a, (hl)
+   062E 32r02r00      [13] 1004 	ld	(_d+0), a
+   0631 23            [ 6] 1005 	inc	hl
+   0632 7E            [ 7] 1006 	ld	a, (hl)
+   0633 32r03r00      [13] 1007 	ld	(_d+1), a
+   0636 21r2Cr06      [10] 1008 	ld	hl, #_lt_sin_j
+   0639 09            [11] 1009 	add	hl, bc
+   063A 7E            [ 7] 1010 	ld	a, (hl)
+   063B 32r06r00      [13] 1011 	ld	(_f+0), a
+   063E 23            [ 6] 1012 	inc	hl
+   063F 7E            [ 7] 1013 	ld	a, (hl)
+   0640 32r07r00      [13] 1014 	ld	(_f+1), a
+                           1015 ;main.c:112: h = d + _2;
+   0643 21r18r00      [10] 1016 	ld	hl, #__2
+   0646 D5            [11] 1017 	push	de
+   0647 11r0Ar00      [10] 1018 	ld	de,#_h
+   064A FD 21r02r00   [14] 1019 	ld	iy,#_d
+   064E FD 7E 00      [19] 1020 	ld	a, 0 (iy)
+   0651 86            [ 7] 1021 	add	a, (hl)
+   0652 12            [ 7] 1022 	ld	(de), a
+   0653 FD 7E 01      [19] 1023 	ld	a, 1 (iy)
+   0656 23            [ 6] 1024 	inc	hl
+   0657 8E            [ 7] 1025 	adc	a, (hl)
+   0658 13            [ 6] 1026 	inc	de
+   0659 12            [ 7] 1027 	ld	(de), a
+   065A D1            [10] 1028 	pop	de
+                           1029 ;main.c:114: fg = x_mul(f, g); fe = x_mul(f, e);
+   065B 2Ar08r00      [16] 1030 	ld	hl, (_g)
+   065E E5            [11] 1031 	push	hl
+   065F 2Ar06r00      [16] 1032 	ld	hl, (_f)
+   0662 E5            [11] 1033 	push	hl
+   0663 CDr00r00      [17] 1034 	call	_fixed_mul
+   0666 F1            [10] 1035 	pop	af
+   0667 F1            [10] 1036 	pop	af
+   0668 22r22r00      [16] 1037 	ld	(_fg), hl
+   066B 2Ar04r00      [16] 1038 	ld	hl, (_e)
+   066E E5            [11] 1039 	push	hl
+   066F 2Ar06r00      [16] 1040 	ld	hl, (_f)
+   0672 E5            [11] 1041 	push	hl
+   0673 CDr00r00      [17] 1042 	call	_fixed_mul
+   0676 F1            [10] 1043 	pop	af
+   0677 F1            [10] 1044 	pop	af
+   0678 22r24r00      [16] 1045 	ld	(_fe), hl
+                           1046 ;main.c:115: dg = x_mul(d, g); de = x_mul(d, e);
+   067B 2Ar08r00      [16] 1047 	ld	hl, (_g)
+   067E E5            [11] 1048 	push	hl
+   067F 2Ar02r00      [16] 1049 	ld	hl, (_d)
+   0682 E5            [11] 1050 	push	hl
+   0683 CDr00r00      [17] 1051 	call	_fixed_mul
+   0686 F1            [10] 1052 	pop	af
+   0687 F1            [10] 1053 	pop	af
+   0688 22r26r00      [16] 1054 	ld	(_dg), hl
+   068B 2Ar04r00      [16] 1055 	ld	hl, (_e)
+   068E E5            [11] 1056 	push	hl
+   068F 2Ar02r00      [16] 1057 	ld	hl, (_d)
+   0692 E5            [11] 1058 	push	hl
+   0693 CDr00r00      [17] 1059 	call	_fixed_mul
+   0696 F1            [10] 1060 	pop	af
+   0697 F1            [10] 1061 	pop	af
+   0698 22r28r00      [16] 1062 	ld	(_de), hl
+                           1063 ;main.c:116: dn = x_mul(d, n); eh = x_mul(e, h);
+   069B 2Ar12r00      [16] 1064 	ld	hl, (_n)
+   069E E5            [11] 1065 	push	hl
+   069F 2Ar02r00      [16] 1066 	ld	hl, (_d)
+   06A2 E5            [11] 1067 	push	hl
+   06A3 CDr00r00      [17] 1068 	call	_fixed_mul
+   06A6 F1            [10] 1069 	pop	af
+   06A7 F1            [10] 1070 	pop	af
+   06A8 22r2Ar00      [16] 1071 	ld	(_dn), hl
+   06AB 2Ar0Ar00      [16] 1072 	ld	hl, (_h)
+   06AE E5            [11] 1073 	push	hl
+   06AF 2Ar04r00      [16] 1074 	ld	hl, (_e)
+   06B2 E5            [11] 1075 	push	hl
+   06B3 CDr00r00      [17] 1076 	call	_fixed_mul
+   06B6 F1            [10] 1077 	pop	af
+   06B7 F1            [10] 1078 	pop	af
+   06B8 22r2Cr00      [16] 1079 	ld	(_eh), hl
+                           1080 ;main.c:117: gh = x_mul(g, h); mh = x_mul(m, h);
+   06BB 2Ar0Ar00      [16] 1081 	ld	hl, (_h)
+   06BE E5            [11] 1082 	push	hl
+   06BF 2Ar08r00      [16] 1083 	ld	hl, (_g)
+   06C2 E5            [11] 1084 	push	hl
+   06C3 CDr00r00      [17] 1085 	call	_fixed_mul
+   06C6 F1            [10] 1086 	pop	af
+   06C7 F1            [10] 1087 	pop	af
+   06C8 22r2Er00      [16] 1088 	ld	(_gh), hl
+   06CB 2Ar0Ar00      [16] 1089 	ld	hl, (_h)
+   06CE E5            [11] 1090 	push	hl
+   06CF 2Ar10r00      [16] 1091 	ld	hl, (_m)
+   06D2 E5            [11] 1092 	push	hl
+   06D3 CDr00r00      [17] 1093 	call	_fixed_mul
+   06D6 F1            [10] 1094 	pop	af
+   06D7 F1            [10] 1095 	pop	af
+   06D8 22r30r00      [16] 1096 	ld	(_mh), hl
+                           1097 ;main.c:118: nh = x_mul(n, h);
+   06DB 2Ar0Ar00      [16] 1098 	ld	hl, (_h)
+   06DE E5            [11] 1099 	push	hl
+   06DF 2Ar12r00      [16] 1100 	ld	hl, (_n)
+   06E2 E5            [11] 1101 	push	hl
+   06E3 CDr00r00      [17] 1102 	call	_fixed_mul
+   06E6 F1            [10] 1103 	pop	af
+   06E7 F1            [10] 1104 	pop	af
+   06E8 22r32r00      [16] 1105 	ld	(_nh), hl
+                           1106 ;main.c:120: for(i=0; i < i_max; i++) {
+   06EB 21 00 00      [10] 1107 	ld	hl, #0x0000
+   06EE 22r34r00      [16] 1108 	ld	(_i), hl
+   06F1                    1109 00124$:
+   06F1 21r3Ar00      [10] 1110 	ld	hl, #_i_max
+   06F4 FD 21r34r00   [14] 1111 	ld	iy, #_i
+   06F8 FD 7E 00      [19] 1112 	ld	a, 0 (iy)
+   06FB 96            [ 7] 1113 	sub	a, (hl)
+   06FC FD 7E 01      [19] 1114 	ld	a, 1 (iy)
+   06FF 23            [ 6] 1115 	inc	hl
+   0700 9E            [ 7] 1116 	sbc	a, (hl)
+   0701 E2r06r07      [10] 1117 	jp	PO, 00231$
+   0704 EE 80         [ 7] 1118 	xor	a, #0x80
+   0706                    1119 00231$:
+   0706 F2r64r09      [10] 1120 	jp	P, 00128$
+                           1121 ;main.c:121: c = lt_sin_i[i]; l = lt_cos_i[i];
+   0709 ED 4Br34r00   [20] 1122 	ld	bc, (_i)
+   070D CB 21         [ 8] 1123 	sla	c
+   070F CB 10         [ 8] 1124 	rl	b
+   0711 21rA8r03      [10] 1125 	ld	hl, #_lt_sin_i
+   0714 09            [11] 1126 	add	hl, bc
+   0715 7E            [ 7] 1127 	ld	a, (hl)
+   0716 32r00r00      [13] 1128 	ld	(_c+0), a
+   0719 23            [ 6] 1129 	inc	hl
+   071A 7E            [ 7] 1130 	ld	a, (hl)
+   071B 32r01r00      [13] 1131 	ld	(_c+1), a
+   071E 21r6Er00      [10] 1132 	ld	hl, #_lt_cos_i
+   0721 09            [11] 1133 	add	hl, bc
+   0722 7E            [ 7] 1134 	ld	a, (hl)
+   0723 32r0Er00      [13] 1135 	ld	(_l+0), a
+   0726 23            [ 6] 1136 	inc	hl
+   0727 7E            [ 7] 1137 	ld	a, (hl)
+   0728 32r0Fr00      [13] 1138 	ld	(_l+1), a
+                           1139 ;main.c:123: D = lx_div(_1, x_mul(c, eh) + fg + _5);
+   072B 2Ar2Cr00      [16] 1140 	ld	hl, (_eh)
+   072E E5            [11] 1141 	push	hl
+   072F 2Ar00r00      [16] 1142 	ld	hl, (_c)
+   0732 E5            [11] 1143 	push	hl
+   0733 CDr00r00      [17] 1144 	call	_fixed_mul
+   0736 F1            [10] 1145 	pop	af
+   0737 F1            [10] 1146 	pop	af
+   0738 4D            [ 4] 1147 	ld	c, l
+   0739 44            [ 4] 1148 	ld	b, h
+   073A 79            [ 4] 1149 	ld	a, c
+   073B 21r22r00      [10] 1150 	ld	hl, #_fg
+   073E 86            [ 7] 1151 	add	a, (hl)
+   073F 4F            [ 4] 1152 	ld	c, a
+   0740 78            [ 4] 1153 	ld	a, b
+   0741 23            [ 6] 1154 	inc	hl
+   0742 8E            [ 7] 1155 	adc	a, (hl)
+   0743 47            [ 4] 1156 	ld	b, a
+   0744 2Ar1Ar00      [16] 1157 	ld	hl, (__5)
+   0747 09            [11] 1158 	add	hl, bc
+   0748 DD 75 FC      [19] 1159 	ld	-4 (ix), l
+   074B 7C            [ 4] 1160 	ld	a, h
+   074C DD 77 FD      [19] 1161 	ld	-3 (ix), a
+   074F 17            [ 4] 1162 	rla
+   0750 9F            [ 4] 1163 	sbc	a, a
+   0751 DD 77 FE      [19] 1164 	ld	-2 (ix), a
+   0754 DD 77 FF      [19] 1165 	ld	-1 (ix), a
+   0757 21r16r00      [10] 1166 	ld	hl,#__1
+   075A 4E            [ 7] 1167 	ld	c, (hl)
+   075B 23            [ 6] 1168 	inc	hl
+   075C 7E            [ 7] 1169 	ld	a, (hl)
+   075D 47            [ 4] 1170 	ld	b, a
+   075E 17            [ 4] 1171 	rla
+   075F 9F            [ 4] 1172 	sbc	a, a
+   0760 5F            [ 4] 1173 	ld	e, a
+   0761 57            [ 4] 1174 	ld	d, a
+   0762 DD 6E FE      [19] 1175 	ld	l, -2 (ix)
+   0765 DD 66 FF      [19] 1176 	ld	h, -1 (ix)
+   0768 E5            [11] 1177 	push	hl
+   0769 DD 6E FC      [19] 1178 	ld	l, -4 (ix)
+   076C DD 66 FD      [19] 1179 	ld	h, -3 (ix)
+   076F E5            [11] 1180 	push	hl
+   0770 D5            [11] 1181 	push	de
+   0771 C5            [11] 1182 	push	bc
+   0772 CDr00r00      [17] 1183 	call	_lfixed_div
+   0775 F1            [10] 1184 	pop	af
+   0776 F1            [10] 1185 	pop	af
+   0777 F1            [10] 1186 	pop	af
+   0778 F1            [10] 1187 	pop	af
+   0779 FD 21r0Cr00   [14] 1188 	ld	iy, #_D
+   077D FD 75 00      [19] 1189 	ld	0 (iy), l
+   0780 FD 74 01      [19] 1190 	ld	1 (iy), h
+                           1191 ;main.c:124: t = x_mul(c, gh) - fe;
+   0783 2Ar2Er00      [16] 1192 	ld	hl, (_gh)
+   0786 E5            [11] 1193 	push	hl
+   0787 2Ar00r00      [16] 1194 	ld	hl, (_c)
+   078A E5            [11] 1195 	push	hl
+   078B CDr00r00      [17] 1196 	call	_fixed_mul
+   078E F1            [10] 1197 	pop	af
+   078F F1            [10] 1198 	pop	af
+   0790 4D            [ 4] 1199 	ld	c, l
+   0791 44            [ 4] 1200 	ld	b, h
+   0792 21r24r00      [10] 1201 	ld	hl, #_fe
+   0795 FD 21r14r00   [14] 1202 	ld	iy, #_t
+   0799 79            [ 4] 1203 	ld	a, c
+   079A 96            [ 7] 1204 	sub	a, (hl)
+   079B FD 77 00      [19] 1205 	ld	0 (iy), a
+   079E 78            [ 4] 1206 	ld	a, b
+   079F 23            [ 6] 1207 	inc	hl
+   07A0 9E            [ 7] 1208 	sbc	a, (hl)
+   07A1 FD 23         [10] 1209 	inc	iy
+   07A3 FD 77 00      [19] 1210 	ld	0 (iy), a
+                           1211 ;main.c:125: x = 40 + x2i( x_mul(x_mul(D, x_mul(mh, l) - x_mul(t, n)), _30) );
+   07A6 2Ar0Er00      [16] 1212 	ld	hl, (_l)
+   07A9 E5            [11] 1213 	push	hl
+   07AA 2Ar30r00      [16] 1214 	ld	hl, (_mh)
+   07AD E5            [11] 1215 	push	hl
+   07AE CDr00r00      [17] 1216 	call	_fixed_mul
+   07B1 F1            [10] 1217 	pop	af
+   07B2 E3            [19] 1218 	ex	(sp),hl
+   07B3 2Ar12r00      [16] 1219 	ld	hl, (_n)
+   07B6 E5            [11] 1220 	push	hl
+   07B7 2Ar14r00      [16] 1221 	ld	hl, (_t)
+   07BA E5            [11] 1222 	push	hl
+   07BB CDr00r00      [17] 1223 	call	_fixed_mul
+   07BE F1            [10] 1224 	pop	af
+   07BF F1            [10] 1225 	pop	af
+   07C0 C1            [10] 1226 	pop	bc
+   07C1 79            [ 4] 1227 	ld	a, c
+   07C2 95            [ 4] 1228 	sub	a, l
+   07C3 4F            [ 4] 1229 	ld	c, a
+   07C4 78            [ 4] 1230 	ld	a, b
+   07C5 9C            [ 4] 1231 	sbc	a, h
+   07C6 47            [ 4] 1232 	ld	b, a
+   07C7 C5            [11] 1233 	push	bc
+   07C8 2Ar0Cr00      [16] 1234 	ld	hl, (_D)
+   07CB E5            [11] 1235 	push	hl
+   07CC CDr00r00      [17] 1236 	call	_fixed_mul
+   07CF F1            [10] 1237 	pop	af
+   07D0 F1            [10] 1238 	pop	af
+   07D1 4D            [ 4] 1239 	ld	c, l
+   07D2 44            [ 4] 1240 	ld	b, h
+   07D3 2Ar20r00      [16] 1241 	ld	hl, (__30)
+   07D6 E5            [11] 1242 	push	hl
+   07D7 C5            [11] 1243 	push	bc
+   07D8 CDr00r00      [17] 1244 	call	_fixed_mul
+   07DB F1            [10] 1245 	pop	af
+   07DC E3            [19] 1246 	ex	(sp),hl
+   07DD CDr00r00      [17] 1247 	call	_fixed2int
+   07E0 F1            [10] 1248 	pop	af
+   07E1 01 28 00      [10] 1249 	ld	bc,#0x0028
+   07E4 09            [11] 1250 	add	hl,bc
+   07E5 22r3Er00      [16] 1251 	ld	(_x), hl
+                           1252 ;main.c:126: y = 12 + x2i( x_mul(x_mul(D, x_mul(nh, l) + x_mul(t, m)), _15) );
+   07E8 2Ar0Er00      [16] 1253 	ld	hl, (_l)
+   07EB E5            [11] 1254 	push	hl
+   07EC 2Ar32r00      [16] 1255 	ld	hl, (_nh)
+   07EF E5            [11] 1256 	push	hl
+   07F0 CDr00r00      [17] 1257 	call	_fixed_mul
+   07F3 F1            [10] 1258 	pop	af
+   07F4 E3            [19] 1259 	ex	(sp),hl
+   07F5 2Ar10r00      [16] 1260 	ld	hl, (_m)
+   07F8 E5            [11] 1261 	push	hl
+   07F9 2Ar14r00      [16] 1262 	ld	hl, (_t)
+   07FC E5            [11] 1263 	push	hl
+   07FD CDr00r00      [17] 1264 	call	_fixed_mul
+   0800 F1            [10] 1265 	pop	af
+   0801 F1            [10] 1266 	pop	af
+   0802 C1            [10] 1267 	pop	bc
+   0803 09            [11] 1268 	add	hl, bc
+   0804 E5            [11] 1269 	push	hl
+   0805 2Ar0Cr00      [16] 1270 	ld	hl, (_D)
+   0808 E5            [11] 1271 	push	hl
+   0809 CDr00r00      [17] 1272 	call	_fixed_mul
+   080C F1            [10] 1273 	pop	af
+   080D F1            [10] 1274 	pop	af
+   080E 4D            [ 4] 1275 	ld	c, l
+   080F 44            [ 4] 1276 	ld	b, h
+   0810 2Ar1Er00      [16] 1277 	ld	hl, (__15)
+   0813 E5            [11] 1278 	push	hl
+   0814 C5            [11] 1279 	push	bc
+   0815 CDr00r00      [17] 1280 	call	_fixed_mul
+   0818 F1            [10] 1281 	pop	af
+   0819 E3            [19] 1282 	ex	(sp),hl
+   081A CDr00r00      [17] 1283 	call	_fixed2int
+   081D F1            [10] 1284 	pop	af
+   081E 01 0C 00      [10] 1285 	ld	bc,#0x000c
+   0821 09            [11] 1286 	add	hl,bc
+   0822 22r40r00      [16] 1287 	ld	(_y), hl
+                           1288 ;main.c:127: o = x + 80 * y;
+   0825 ED 4Br40r00   [20] 1289 	ld	bc, (_y)
+   0829 69            [ 4] 1290 	ld	l, c
+   082A 60            [ 4] 1291 	ld	h, b
+   082B 29            [11] 1292 	add	hl, hl
+   082C 29            [11] 1293 	add	hl, hl
+   082D 09            [11] 1294 	add	hl, bc
+   082E 29            [11] 1295 	add	hl, hl
+   082F 29            [11] 1296 	add	hl, hl
+   0830 29            [11] 1297 	add	hl, hl
+   0831 29            [11] 1298 	add	hl, hl
+   0832 EB            [ 4] 1299 	ex	de, hl
+   0833 21r42r00      [10] 1300 	ld	hl, #_o
+   0836 FD 21r3Er00   [14] 1301 	ld	iy, #_x
+   083A FD 7E 00      [19] 1302 	ld	a, 0 (iy)
+   083D 83            [ 4] 1303 	add	a, e
+   083E 77            [ 7] 1304 	ld	(hl), a
+   083F FD 7E 01      [19] 1305 	ld	a, 1 (iy)
+   0842 8A            [ 4] 1306 	adc	a, d
+   0843 23            [ 6] 1307 	inc	hl
+   0844 77            [ 7] 1308 	ld	(hl), a
+                           1309 ;main.c:128: if(22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+   0845 21r40r00      [10] 1310 	ld	hl, #_y
+   0848 7E            [ 7] 1311 	ld	a, (hl)
+   0849 D6 16         [ 7] 1312 	sub	a, #0x16
+   084B 23            [ 6] 1313 	inc	hl
+   084C 7E            [ 7] 1314 	ld	a, (hl)
+   084D 17            [ 4] 1315 	rla
+   084E 3F            [ 4] 1316 	ccf
+   084F 1F            [ 4] 1317 	rra
+   0850 DE 80         [ 7] 1318 	sbc	a, #0x80
+   0852 D2r5Ar09      [10] 1319 	jp	NC, 00125$
+   0855 AF            [ 4] 1320 	xor	a, a
+   0856 FD 21r40r00   [14] 1321 	ld	iy, #_y
+   085A FD BE 00      [19] 1322 	cp	a, 0 (iy)
+   085D FD 9E 01      [19] 1323 	sbc	a, 1 (iy)
+   0860 E2r65r08      [10] 1324 	jp	PO, 00234$
+   0863 EE 80         [ 7] 1325 	xor	a, #0x80
+   0865                    1326 00234$:
+   0865 F2r5Ar09      [10] 1327 	jp	P, 00125$
+   0868 AF            [ 4] 1328 	xor	a, a
+   0869 FD 21r3Er00   [14] 1329 	ld	iy, #_x
+   086D FD BE 00      [19] 1330 	cp	a, 0 (iy)
+   0870 FD 9E 01      [19] 1331 	sbc	a, 1 (iy)
+   0873 E2r78r08      [10] 1332 	jp	PO, 00235$
+   0876 EE 80         [ 7] 1333 	xor	a, #0x80
+   0878                    1334 00235$:
+   0878 F2r5Ar09      [10] 1335 	jp	P, 00125$
+   087B 21r3Er00      [10] 1336 	ld	hl, #_x
+   087E 7E            [ 7] 1337 	ld	a, (hl)
+   087F D6 50         [ 7] 1338 	sub	a, #0x50
+   0881 23            [ 6] 1339 	inc	hl
+   0882 7E            [ 7] 1340 	ld	a, (hl)
+   0883 17            [ 4] 1341 	rla
+   0884 3F            [ 4] 1342 	ccf
+   0885 1F            [ 4] 1343 	rra
+   0886 DE 80         [ 7] 1344 	sbc	a, #0x80
+   0888 D2r5Ar09      [10] 1345 	jp	NC, 00125$
+   088B 2Ar42r00      [16] 1346 	ld	hl, (_o)
+   088E 29            [11] 1347 	add	hl, hl
+   088F 11rE2r06      [10] 1348 	ld	de, #_z
+   0892 19            [11] 1349 	add	hl, de
+   0893 4E            [ 7] 1350 	ld	c, (hl)
+   0894 23            [ 6] 1351 	inc	hl
+   0895 46            [ 7] 1352 	ld	b, (hl)
+   0896 79            [ 4] 1353 	ld	a, c
+   0897 FD 21r0Cr00   [14] 1354 	ld	iy, #_D
+   089B FD 96 00      [19] 1355 	sub	a, 0 (iy)
+   089E 78            [ 4] 1356 	ld	a, b
+   089F FD 9E 01      [19] 1357 	sbc	a, 1 (iy)
+   08A2 E2rA7r08      [10] 1358 	jp	PO, 00236$
+   08A5 EE 80         [ 7] 1359 	xor	a, #0x80
+   08A7                    1360 00236$:
+   08A7 F2r5Ar09      [10] 1361 	jp	P, 00125$
+                           1362 ;main.c:129: N = x2i( x_mul( x_mul(fe - x_mul(c, dg), m) - x_mul(c, de) - fg - x_mul(l, dn), _8 ));
+   08AA 2Ar26r00      [16] 1363 	ld	hl, (_dg)
+   08AD E5            [11] 1364 	push	hl
+   08AE 2Ar00r00      [16] 1365 	ld	hl, (_c)
+   08B1 E5            [11] 1366 	push	hl
+   08B2 CDr00r00      [17] 1367 	call	_fixed_mul
+   08B5 F1            [10] 1368 	pop	af
+   08B6 F1            [10] 1369 	pop	af
+   08B7 4D            [ 4] 1370 	ld	c, l
+   08B8 44            [ 4] 1371 	ld	b, h
+   08B9 FD 21r24r00   [14] 1372 	ld	iy, #_fe
+   08BD FD 7E 00      [19] 1373 	ld	a, 0 (iy)
+   08C0 91            [ 4] 1374 	sub	a, c
+   08C1 4F            [ 4] 1375 	ld	c, a
+   08C2 FD 7E 01      [19] 1376 	ld	a, 1 (iy)
+   08C5 98            [ 4] 1377 	sbc	a, b
+   08C6 47            [ 4] 1378 	ld	b, a
+   08C7 2Ar10r00      [16] 1379 	ld	hl, (_m)
+   08CA E5            [11] 1380 	push	hl
+   08CB C5            [11] 1381 	push	bc
+   08CC CDr00r00      [17] 1382 	call	_fixed_mul
+   08CF F1            [10] 1383 	pop	af
+   08D0 F1            [10] 1384 	pop	af
+   08D1 4D            [ 4] 1385 	ld	c, l
+   08D2 44            [ 4] 1386 	ld	b, h
+   08D3 C5            [11] 1387 	push	bc
+   08D4 2Ar28r00      [16] 1388 	ld	hl, (_de)
+   08D7 E5            [11] 1389 	push	hl
+   08D8 2Ar00r00      [16] 1390 	ld	hl, (_c)
+   08DB E5            [11] 1391 	push	hl
+   08DC CDr00r00      [17] 1392 	call	_fixed_mul
+   08DF F1            [10] 1393 	pop	af
+   08E0 F1            [10] 1394 	pop	af
+   08E1 C1            [10] 1395 	pop	bc
+   08E2 79            [ 4] 1396 	ld	a, c
+   08E3 95            [ 4] 1397 	sub	a, l
+   08E4 4F            [ 4] 1398 	ld	c, a
+   08E5 78            [ 4] 1399 	ld	a, b
+   08E6 9C            [ 4] 1400 	sbc	a, h
+   08E7 47            [ 4] 1401 	ld	b, a
+   08E8 21r22r00      [10] 1402 	ld	hl, #_fg
+   08EB 79            [ 4] 1403 	ld	a, c
+   08EC 96            [ 7] 1404 	sub	a, (hl)
+   08ED 4F            [ 4] 1405 	ld	c, a
+   08EE 78            [ 4] 1406 	ld	a, b
+   08EF 23            [ 6] 1407 	inc	hl
+   08F0 9E            [ 7] 1408 	sbc	a, (hl)
+   08F1 47            [ 4] 1409 	ld	b, a
+   08F2 C5            [11] 1410 	push	bc
+   08F3 2Ar2Ar00      [16] 1411 	ld	hl, (_dn)
+   08F6 E5            [11] 1412 	push	hl
+   08F7 2Ar0Er00      [16] 1413 	ld	hl, (_l)
+   08FA E5            [11] 1414 	push	hl
+   08FB CDr00r00      [17] 1415 	call	_fixed_mul
+   08FE F1            [10] 1416 	pop	af
+   08FF F1            [10] 1417 	pop	af
+   0900 C1            [10] 1418 	pop	bc
+   0901 79            [ 4] 1419 	ld	a, c
+   0902 95            [ 4] 1420 	sub	a, l
+   0903 4F            [ 4] 1421 	ld	c, a
+   0904 78            [ 4] 1422 	ld	a, b
+   0905 9C            [ 4] 1423 	sbc	a, h
+   0906 47            [ 4] 1424 	ld	b, a
+   0907 2Ar1Cr00      [16] 1425 	ld	hl, (__8)
+   090A E5            [11] 1426 	push	hl
+   090B C5            [11] 1427 	push	bc
+   090C CDr00r00      [17] 1428 	call	_fixed_mul
+   090F F1            [10] 1429 	pop	af
+   0910 E3            [19] 1430 	ex	(sp),hl
+   0911 CDr00r00      [17] 1431 	call	_fixed2int
+   0914 F1            [10] 1432 	pop	af
+   0915 22r44r00      [16] 1433 	ld	(_N), hl
+                           1434 ;main.c:130: z[o] = D;
+   0918 2Ar42r00      [16] 1435 	ld	hl, (_o)
+   091B 29            [11] 1436 	add	hl, hl
+   091C 11rE2r06      [10] 1437 	ld	de, #_z
+   091F 19            [11] 1438 	add	hl, de
+   0920 FD 21r0Cr00   [14] 1439 	ld	iy, #_D
+   0924 FD 7E 00      [19] 1440 	ld	a, 0 (iy)
+   0927 77            [ 7] 1441 	ld	(hl), a
+   0928 23            [ 6] 1442 	inc	hl
+   0929 FD 7E 01      [19] 1443 	ld	a, 1 (iy)
+   092C 77            [ 7] 1444 	ld	(hl), a
+                           1445 ;main.c:131: b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+   092D 3ErA2         [ 7] 1446 	ld	a, #<(_b)
+   092F 21r42r00      [10] 1447 	ld	hl, #_o
+   0932 86            [ 7] 1448 	add	a, (hl)
+   0933 4F            [ 4] 1449 	ld	c, a
+   0934 3Es14         [ 7] 1450 	ld	a, #>(_b)
+   0936 23            [ 6] 1451 	inc	hl
+   0937 8E            [ 7] 1452 	adc	a, (hl)
+   0938 47            [ 4] 1453 	ld	b, a
+   0939 AF            [ 4] 1454 	xor	a, a
+   093A FD 21r44r00   [14] 1455 	ld	iy, #_N
+   093E FD BE 00      [19] 1456 	cp	a, 0 (iy)
+   0941 FD 9E 01      [19] 1457 	sbc	a, 1 (iy)
+   0944 E2r49r09      [10] 1458 	jp	PO, 00237$
+   0947 EE 80         [ 7] 1459 	xor	a, #0x80
+   0949                    1460 00237$:
+   0949 F2r51r09      [10] 1461 	jp	P, 00133$
+   094C 2Ar44r00      [16] 1462 	ld	hl, (_N)
+   094F 18 03         [12] 1463 	jr	00134$
+   0951                    1464 00133$:
+   0951 21 00 00      [10] 1465 	ld	hl, #0x0000
+   0954                    1466 00134$:
+   0954 11rBDr0A      [10] 1467 	ld	de, #___str_4
+   0957 19            [11] 1468 	add	hl, de
+   0958 7E            [ 7] 1469 	ld	a, (hl)
+   0959 02            [ 7] 1470 	ld	(bc), a
+   095A                    1471 00125$:
+                           1472 ;main.c:120: for(i=0; i < i_max; i++) {
+   095A 2Ar34r00      [16] 1473 	ld	hl, (_i)
+   095D 23            [ 6] 1474 	inc	hl
+   095E 22r34r00      [16] 1475 	ld	(_i), hl
+   0961 C3rF1r06      [10] 1476 	jp	00124$
+   0964                    1477 00128$:
+                           1478 ;main.c:104: for(j=0; j < j_max; j++) {
+   0964 2Ar36r00      [16] 1479 	ld	hl, (_j)
+   0967 23            [ 6] 1480 	inc	hl
+   0968 22r36r00      [16] 1481 	ld	(_j), hl
+   096B C3rB0r05      [10] 1482 	jp	00127$
+   096E                    1483 00112$:
+                           1484 ;main.c:135: Locate(0,0);
+   096E AF            [ 4] 1485 	xor	a, a
+   096F F5            [11] 1486 	push	af
+   0970 33            [ 6] 1487 	inc	sp
+   0971 AF            [ 4] 1488 	xor	a, a
+   0972 F5            [11] 1489 	push	af
+   0973 33            [ 6] 1490 	inc	sp
+   0974 CDr00r00      [17] 1491 	call	_Locate
+   0977 F1            [10] 1492 	pop	af
+                           1493 ;main.c:136: for(k = 0; k < 1760; k++) {
+   0978 21 00 00      [10] 1494 	ld	hl, #0x0000
+   097B 22r38r00      [16] 1495 	ld	(_k), hl
+   097E                    1496 00129$:
+                           1497 ;main.c:137: putchar(b[k]);
+   097E 3ErA2         [ 7] 1498 	ld	a, #<(_b)
+   0980 21r38r00      [10] 1499 	ld	hl, #_k
+   0983 86            [ 7] 1500 	add	a, (hl)
+   0984 DD 77 FE      [19] 1501 	ld	-2 (ix), a
+   0987 3Es14         [ 7] 1502 	ld	a, #>(_b)
+   0989 23            [ 6] 1503 	inc	hl
+   098A 8E            [ 7] 1504 	adc	a, (hl)
+   098B DD 77 FF      [19] 1505 	ld	-1 (ix), a
+   098E DD 6E FE      [19] 1506 	ld	l, -2 (ix)
+   0991 DD 66 FF      [19] 1507 	ld	h, -1 (ix)
+   0994 7E            [ 7] 1508 	ld	a, (hl)
+   0995 DD 77 FF      [19] 1509 	ld	-1 (ix), a
+   0998 DD 77 FE      [19] 1510 	ld	-2 (ix), a
+   099B AF            [ 4] 1511 	xor	a, a
+   099C DD 77 FF      [19] 1512 	ld	-1 (ix), a
+   099F DD 6E FE      [19] 1513 	ld	l, -2 (ix)
+   09A2 DD 66 FF      [19] 1514 	ld	h, -1 (ix)
+   09A5 E5            [11] 1515 	push	hl
+   09A6 CDr00r00      [17] 1516 	call	_putchar
+   09A9 F1            [10] 1517 	pop	af
+                           1518 ;main.c:136: for(k = 0; k < 1760; k++) {
+   09AA 2Ar38r00      [16] 1519 	ld	hl, (_k)
+   09AD 23            [ 6] 1520 	inc	hl
+   09AE 22r38r00      [16] 1521 	ld	(_k), hl
+   09B1 FD 21r38r00   [14] 1522 	ld	iy, #_k
+   09B5 FD 7E 00      [19] 1523 	ld	a, 0 (iy)
+   09B8 D6 E0         [ 7] 1524 	sub	a, #0xe0
+   09BA FD 7E 01      [19] 1525 	ld	a, 1 (iy)
+   09BD 17            [ 4] 1526 	rla
+   09BE 3F            [ 4] 1527 	ccf
+   09BF 1F            [ 4] 1528 	rra
+   09C0 DE 86         [ 7] 1529 	sbc	a, #0x86
+   09C2 38 BA         [12] 1530 	jr	C,00129$
+                           1531 ;main.c:139: A += A_inc*5;
+   09C4 2Ar50r00      [16] 1532 	ld	hl, (_A_inc + 2)
+   09C7 E5            [11] 1533 	push	hl
+   09C8 2Ar4Er00      [16] 1534 	ld	hl, (_A_inc)
+   09CB E5            [11] 1535 	push	hl
+   09CC 21 A0 40      [10] 1536 	ld	hl, #0x40a0
+   09CF E5            [11] 1537 	push	hl
+   09D0 21 00 00      [10] 1538 	ld	hl, #0x0000
+   09D3 E5            [11] 1539 	push	hl
+   09D4 CDr00r00      [17] 1540 	call	___fsmul
+   09D7 F1            [10] 1541 	pop	af
+   09D8 F1            [10] 1542 	pop	af
+   09D9 F1            [10] 1543 	pop	af
+   09DA F1            [10] 1544 	pop	af
+   09DB D5            [11] 1545 	push	de
+   09DC E5            [11] 1546 	push	hl
+   09DD 2Ar48r00      [16] 1547 	ld	hl, (_A + 2)
+   09E0 E5            [11] 1548 	push	hl
+   09E1 2Ar46r00      [16] 1549 	ld	hl, (_A)
+   09E4 E5            [11] 1550 	push	hl
+   09E5 CDr00r00      [17] 1551 	call	___fsadd
+   09E8 F1            [10] 1552 	pop	af
+   09E9 F1            [10] 1553 	pop	af
+   09EA F1            [10] 1554 	pop	af
+   09EB F1            [10] 1555 	pop	af
+   09EC DD 75 FC      [19] 1556 	ld	-4 (ix), l
+   09EF DD 74 FD      [19] 1557 	ld	-3 (ix), h
+   09F2 DD 73 FE      [19] 1558 	ld	-2 (ix), e
+   09F5 DD 72 FF      [19] 1559 	ld	-1 (ix), d
+   09F8 11r46r00      [10] 1560 	ld	de, #_A
+   09FB 21 04 00      [10] 1561 	ld	hl, #4
+   09FE 39            [11] 1562 	add	hl, sp
+   09FF 01 04 00      [10] 1563 	ld	bc, #4
+   0A02 ED B0         [21] 1564 	ldir
+                           1565 ;main.c:140: B += B_inc*5;
+   0A04 2Ar54r00      [16] 1566 	ld	hl, (_B_inc + 2)
+   0A07 E5            [11] 1567 	push	hl
+   0A08 2Ar52r00      [16] 1568 	ld	hl, (_B_inc)
+   0A0B E5            [11] 1569 	push	hl
+   0A0C 21 A0 40      [10] 1570 	ld	hl, #0x40a0
+   0A0F E5            [11] 1571 	push	hl
+   0A10 21 00 00      [10] 1572 	ld	hl, #0x0000
+   0A13 E5            [11] 1573 	push	hl
+   0A14 CDr00r00      [17] 1574 	call	___fsmul
+   0A17 F1            [10] 1575 	pop	af
+   0A18 F1            [10] 1576 	pop	af
+   0A19 F1            [10] 1577 	pop	af
+   0A1A F1            [10] 1578 	pop	af
+   0A1B D5            [11] 1579 	push	de
+   0A1C E5            [11] 1580 	push	hl
+   0A1D 2Ar4Cr00      [16] 1581 	ld	hl, (_B + 2)
+   0A20 E5            [11] 1582 	push	hl
+   0A21 2Ar4Ar00      [16] 1583 	ld	hl, (_B)
+   0A24 E5            [11] 1584 	push	hl
+   0A25 CDr00r00      [17] 1585 	call	___fsadd
+   0A28 F1            [10] 1586 	pop	af
+   0A29 F1            [10] 1587 	pop	af
+   0A2A F1            [10] 1588 	pop	af
+   0A2B F1            [10] 1589 	pop	af
+   0A2C DD 75 FC      [19] 1590 	ld	-4 (ix), l
+   0A2F DD 74 FD      [19] 1591 	ld	-3 (ix), h
+   0A32 DD 73 FE      [19] 1592 	ld	-2 (ix), e
+   0A35 DD 72 FF      [19] 1593 	ld	-1 (ix), d
+   0A38 11r4Ar00      [10] 1594 	ld	de, #_B
+   0A3B 21 04 00      [10] 1595 	ld	hl, #4
+   0A3E 39            [11] 1596 	add	hl, sp
+   0A3F 01 04 00      [10] 1597 	ld	bc, #4
+   0A42 ED B0         [21] 1598 	ldir
+                           1599 ;main.c:142: fElapsedTime = RealTimer()/fVDPHz;
+   0A44 CDr00r00      [17] 1600 	call	_RealTimer
+   0A47 DD 75 FE      [19] 1601 	ld	-2 (ix), l
+   0A4A DD 74 FF      [19] 1602 	ld	-1 (ix), h
+   0A4D E5            [11] 1603 	push	hl
+   0A4E CDr00r00      [17] 1604 	call	___uint2fs
+   0A51 F1            [10] 1605 	pop	af
+   0A52 DD 75 FC      [19] 1606 	ld	-4 (ix), l
+   0A55 DD 74 FD      [19] 1607 	ld	-3 (ix), h
+   0A58 DD 73 FE      [19] 1608 	ld	-2 (ix), e
+   0A5B DD 72 FF      [19] 1609 	ld	-1 (ix), d
+   0A5E 2Ar08r00      [16] 1610 	ld	hl, (_fVDPHz + 2)
+   0A61 E5            [11] 1611 	push	hl
+   0A62 2Ar06r00      [16] 1612 	ld	hl, (_fVDPHz)
+   0A65 E5            [11] 1613 	push	hl
+   0A66 DD 6E FE      [19] 1614 	ld	l, -2 (ix)
+   0A69 DD 66 FF      [19] 1615 	ld	h, -1 (ix)
+   0A6C E5            [11] 1616 	push	hl
+   0A6D DD 6E FC      [19] 1617 	ld	l, -4 (ix)
+   0A70 DD 66 FD      [19] 1618 	ld	h, -3 (ix)
+   0A73 E5            [11] 1619 	push	hl
+   0A74 CDr00r00      [17] 1620 	call	___fsdiv
+   0A77 F1            [10] 1621 	pop	af
+   0A78 F1            [10] 1622 	pop	af
+   0A79 F1            [10] 1623 	pop	af
+   0A7A F1            [10] 1624 	pop	af
+   0A7B DD 75 FC      [19] 1625 	ld	-4 (ix), l
+   0A7E DD 74 FD      [19] 1626 	ld	-3 (ix), h
+   0A81 DD 73 FE      [19] 1627 	ld	-2 (ix), e
+   0A84 DD 72 FF      [19] 1628 	ld	-1 (ix), d
+   0A87 11r02r00      [10] 1629 	ld	de, #_fElapsedTime
+   0A8A 21 04 00      [10] 1630 	ld	hl, #4
+   0A8D 39            [11] 1631 	add	hl, sp
+   0A8E 01 04 00      [10] 1632 	ld	bc, #4
+   0A91 ED B0         [21] 1633 	ldir
+                           1634 ;main.c:143: Locate(2, 22);
+   0A93 11 02 16      [10] 1635 	ld	de, #0x1602
+   0A96 D5            [11] 1636 	push	de
+   0A97 CDr00r00      [17] 1637 	call	_Locate
+                           1638 ;main.c:144: PrintFloat(fElapsedTime, 2);
+   0A9A 26 02         [ 7] 1639 	ld	h,#0x02
+   0A9C E3            [19] 1640 	ex	(sp),hl
+   0A9D 33            [ 6] 1641 	inc	sp
+   0A9E 2Ar04r00      [16] 1642 	ld	hl, (_fElapsedTime + 2)
+   0AA1 E5            [11] 1643 	push	hl
+   0AA2 2Ar02r00      [16] 1644 	ld	hl, (_fElapsedTime)
+   0AA5 E5            [11] 1645 	push	hl
+   0AA6 CDr00r00      [17] 1646 	call	_PrintFloat
+   0AA9 F1            [10] 1647 	pop	af
+   0AAA F1            [10] 1648 	pop	af
+   0AAB 33            [ 6] 1649 	inc	sp
+                           1650 ;main.c:146: return 0;
+                           1651 ;main.c:147: }
+   0AAC C3rCCr04      [10] 1652 	jp	00115$
+   0AAF                    1653 ___str_2:
+   0AAF 4C 6F 61 64 69 6E  1654 	.ascii "Loading..."
+        67 2E 2E 2E
+   0AB9 00                 1655 	.db 0x00
+   0ABA                    1656 ___str_3:
+   0ABA 56 57              1657 	.ascii "VW"
+   0ABC 00                 1658 	.db 0x00
+   0ABD                    1659 ___str_4:
+   0ABD 2E 2C 2D 7E 3A 3B  1660 	.ascii ".,-~:;=!*#$@"
+        3D 21 2A 23 24 40
+   0AC9 00                 1661 	.db 0x00
+                           1662 	.area _CODE
+                           1663 	.area _INITIALIZER
+   0000                    1664 __xinit__w:
+   0000 00 00              1665 	.dw #0x0000
+   0002                    1666 __xinit__fElapsedTime:
+   0002 00 00 00 00        1667 	.byte #0x00, #0x00, #0x00, #0x00	;  0.000000e+00
+   0006                    1668 __xinit__fVDPHz:
+   0006 00 00 70 42        1669 	.byte #0x00, #0x00, #0x70, #0x42	;  6.000000e+01
+                           1670 	.area _CABS (ABS)

@@ -1,0 +1,125 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+  1 _A                                                             0046 GR
+  1 _A_inc                                                         004E GR
+  1 _B                                                             004A GR
+  1 _B_inc                                                         0052 GR
+    _Cls                                                           **** GX
+  1 _D                                                             000C GR
+  0 _Done_Version                                                  0164 R
+    _Itoa                                                          **** GX
+    _Locate                                                        **** GX
+  1 _N                                                             0044 GR
+    _Print                                                         **** GX
+  0 _PrintFloat                                                    0000 GR
+    _RealTimer                                                     **** GX
+    _Screen                                                        **** GX
+    _SetColors                                                     **** GX
+    _SetRealTimer                                                  **** GX
+    _StrConcat                                                     **** GX
+    _StrLen                                                        **** GX
+    _Width                                                         **** GX
+  1 __1                                                            0016 GR
+  1 __15                                                           001E GR
+  1 __2                                                            0018 GR
+  1 __30                                                           0020 GR
+  1 __5                                                            001A GR
+  1 __8                                                            001C GR
+    ___fs2sint                                                     **** GX
+    ___fsadd                                                       **** GX
+    ___fsdiv                                                       **** GX
+    ___fslt                                                        **** GX
+    ___fsmul                                                       **** GX
+    ___fssub                                                       **** GX
+    ___sint2fs                                                     **** GX
+  0 ___str_0                                                       0184 R
+  0 ___str_2                                                       0AAF R
+  0 ___str_3                                                       0ABA R
+  0 ___str_4                                                       0ABD R
+    ___uchar2fs                                                    **** GX
+    ___uint2fs                                                     **** GX
+  7 __xinit__fElapsedTime                                          0002 R
+  7 __xinit__fVDPHz                                                0006 R
+  7 __xinit__w                                                     0000 R
+  1 _b                                                             14A2 GR
+  1 _c                                                             0000 GR
+    _cosf                                                          **** GX
+  1 _d                                                             0002 GR
+  1 _de                                                            0028 GR
+  1 _dg                                                            0026 GR
+  1 _dn                                                            002A GR
+  1 _e                                                             0004 GR
+  1 _eh                                                            002C GR
+  1 _f                                                             0006 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  2 _fElapsedTime                                                  0002 GR
+  2 _fVDPHz                                                        0006 GR
+  1 _fe                                                            0024 GR
+  1 _fg                                                            0022 GR
+  1 _fi                                                            0056 GR
+    _fixed2int                                                     **** GX
+    _fixed_mul                                                     **** GX
+  1 _fj                                                            005A GR
+    _float2fixed                                                   **** GX
+  1 _g                                                             0008 GR
+  1 _gh                                                            002E GR
+  1 _h                                                             000A GR
+  1 _i                                                             0034 GR
+  1 _i_inc                                                         006A GR
+  1 _i_lim                                                         0066 GR
+  1 _i_max                                                         003A GR
+    _int2fixed                                                     **** GX
+  1 _j                                                             0036 GR
+  1 _j_inc                                                         0062 GR
+  1 _j_lim                                                         005E GR
+  1 _j_max                                                         003C GR
+  1 _k                                                             0038 GR
+  1 _l                                                             000E GR
+    _lfixed_div                                                    **** GX
+  1 _lt_cos_i                                                      006E GR
+  1 _lt_cos_j                                                      02F2 GR
+  1 _lt_sin_i                                                      03A8 GR
+  1 _lt_sin_j                                                      062C GR
+  1 _m                                                             0010 GR
+  0 _main                                                          0186 GR
+    _memset                                                        **** GX
+  1 _mh                                                            0030 GR
+  1 _n                                                             0012 GR
+  1 _nh                                                            0032 GR
+  1 _o                                                             0042 GR
+    _powf                                                          **** GX
+    _putchar                                                       **** GX
+    _sinf                                                          **** GX
+  1 _t                                                             0014 GR
+  2 _w                                                             0000 GR
+  1 _x                                                             003E GR
+  1 _y                                                             0040 GR
+  1 _z                                                             06E2 GR
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180 / ZX-Next / eZ80), page 3.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  ACA   flags    0
+   1 _DATA                                      size 1B82   flags    0
+   2 _INITIALIZED                               size    A   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size    A   flags    0
+   8 _CABS                                      size    0   flags    8
+

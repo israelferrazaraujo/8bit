@@ -1,0 +1,390 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__HEADER                       
+     00000000  l__HEAP                         
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     00000000  s__HEADER                       
+     00000000  s__HEADER0                      
+     00000001  l__GSFINAL                      
+     00000006  l__HEADER0                      
+     0000000A  l__INITIALIZER                  
+     0000000C  l__INITIALIZED                  
+     0000000F  l__GSINIT                       
+     00000106  s__CODE                         
+     0000104A  l__HOME                         
+     00001B88  l__DATA                         
+     00002806  l__CODE                         
+     0000290C  s__DATA                         
+     00004494  s__INITIALIZED                  
+     000044A0  s__HOME                         
+     000054EA  s__GSINIT                       
+     000054F9  s__GSFINAL                      
+     000054FA  s__INITIALIZER                  
+     00005504  s__HEAP                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00000106    00002806 =       10246. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000106  _PrintFloat                        main
+     0000028C  _main                              main
+     00000D5D  _fsin                              trig
+     00000DA1  _fcos                              trig
+     00000E3B  _nsin                              trig
+     00000E45  _ncos                              trig
+     00000E7A  _xsin                              trig
+     00000EAA  _xcos                              trig
+     00000F02  _ufixed2uint                       fixed
+     00000F0F  _uint2ufixed                       fixed
+     00000F1A  _ufixed2float                      fixed
+     00000F37  _float2ufixed                      fixed
+     00000F62  _ufixed_mul                        fixed
+     00000F7C  _ufixed_div                        fixed
+     00000FC3  _fixed2int                         fixed
+     00000FD2  _int2fixed                         fixed
+     00000FDD  _fixed2float                       fixed
+     00000FFA  _float2fixed                       fixed
+     00001025  _fixed_mul                         fixed
+     00001060  _fixed_div                         fixed
+     000010AA  _ulfixed2uint                      fixed
+     000010C8  _ulfixed2ulong                     fixed
+     000010E4  _uint2ulfixed                      fixed
+     000010FA  _ulong2ulfixed                     fixed
+     00001115  _ulfixed2float                     fixed
+     00001142  _float2ulfixed                     fixed
+     0000116D  _ulfixed_mul                       fixed
+     000011A7  _ulfixed_div                       fixed
+     000011E1  _lfixed2int                        fixed
+     00001204  _lfixed2long                       fixed
+     00001223  _int2lfixed                        fixed
+     0000123B  _long2lfixed                       fixed
+     00001256  _lfixed2float                      fixed
+     00001283  _float2lfixed                      fixed
+     000012AE  _lfixed_mul                        fixed
+     000012E8  _lfixed_div                        fixed
+     00001322  _Cls                               cls
+     00001334  _cosf                              cosf
+     00001370  _sinf                              sinf
+     000013AA  _SetRealTimer                      setrealtimer
+     000013DD  _sincosf                           sincosf
+     000017F4  _putchar                           
+     000017F4  _putchar_rr_s                      
+     000017F9  _putchar_rr_dbs                    
+     000017FE  __mulint                           
+     00001804  __mul16                            
+     00001818  _powf                              powf
+     000018C6  _Width                             width
+     0000191B  _fabsf                             fabsf
+     0000195C  _RealTimer                         realtimer
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00000106    00002806 =       10246. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00001984  _memset                            _memset
+     000019AF  _Itoa                              itoa
+     00001AD6  _Print                             print
+     00001B22  _StrConcat                         
+     00001B48  _StrReverse                        strreverse
+     00001BCD  _StrLen                            
+     00001BE8  _Locate                            locate
+     00001F55  __modschar                         
+     00001F62  __modsint                          
+     00001F6E  _SetColors                         setcolors
+     00001FC8  __divsint                          
+     00001FD1  __divschar                         
+     00001FD8  __div8                             
+     00001FDC  __div_signexte                     
+     00001FE0  __div16                            
+     00002006  __get_remainder                    
+     00002010  _Screen                            
+     00002030  _logf                              logf
+     00002300  _expf                              expf
+     00002742  __divuint                          
+     0000274A  __divuchar                         
+     00002751  __divu8                            
+     00002754  __divu16                           
+     00002783  _ldexpf                            ldexpf
+     00002849  _frexpf                            frexpf
+     000028EE  _PrintChar                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               0000290C    00001B88 =        7048. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000290C  _c                                 main
+     0000290E  _d                                 main
+     00002910  _e                                 main
+     00002912  _f                                 main
+     00002914  _g                                 main
+     00002916  _h                                 main
+     00002918  _D                                 main
+     0000291A  _l                                 main
+     0000291C  _m                                 main
+     0000291E  _n                                 main
+     00002920  _t                                 main
+     00002922  __1                                main
+     00002924  __2                                main
+     00002926  __5                                main
+     00002928  __8                                main
+     0000292A  __15                               main
+     0000292C  __30                               main
+     0000292E  _fg                                main
+     00002930  _fe                                main
+     00002932  _dg                                main
+     00002934  _de                                main
+     00002936  _dn                                main
+     00002938  _eh                                main
+     0000293A  _gh                                main
+     0000293C  _mh                                main
+     0000293E  _nh                                main
+     00002940  _i                                 main
+     00002942  _j                                 main
+     00002944  _k                                 main
+     00002946  _i_max                             main
+     00002948  _j_max                             main
+     0000294A  _x                                 main
+     0000294C  _y                                 main
+     0000294E  _o                                 main
+     00002950  _N                                 main
+     00002952  _A                                 main
+     00002956  _B                                 main
+     0000295A  _A_inc                             main
+     0000295E  _B_inc                             main
+     00002962  _fi                                main
+     00002966  _fj                                main
+     0000296A  _j_lim                             main
+     0000296E  _j_inc                             main
+     00002972  _i_lim                             main
+     00002976  _i_inc                             main
+     0000297A  _lt_cos_i                          main
+     00002BFE  _lt_cos_j                          main
+     00002CB4  _lt_sin_i                          main
+     00002F38  _lt_sin_j                          main
+     00002FEE  _z                                 main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               0000290C    00001B88 =        7048. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00003DAE  _b                                 main
+     00004492  _errno                             errno
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_INITIALIZED                        00004494    0000000C =          12. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004494  _w                                 main
+     00004496  _fElapsedTime                      main
+     0000449A  _fVDPHz                            main
+     0000449E  _heap_top                          
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_HOME                               000044A0    0000104A =        4170. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000044A0  ___fssub                           _fssub
+     000044D5  ___fsmul                           _fsmul
+     0000489A  ___slong2fs                        _slong2fs
+     000048E2  ___fs2slong                        _fs2slong
+     0000495F  ___ulong2fs                        _ulong2fs
+     00004A39  ___fs2ulong                        _fs2ulong
+     00004AE3  ___fslt                            _fslt
+     00004BE0  ___fsadd                           _fsadd
+     00004FD3  __divslong                         _divslong
+     00005089  __divulong                         _divulong
+     0000511B  ___fs2sint                         _fs2sint
+     0000516C  ___sint2fs                         _sint2fs
+     00005180  ___fs2uint                         _fs2uint
+     000051AF  ___uint2fs                         _uint2fs
+     000051C1  ___fsdiv                           _fsdiv
+     000052C1  ___uchar2fs                        _uchar2fs
+     000052D3  __mullong                          _mullong
+     00005451  ___fseq                            _fseq
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_GSINIT                             000054EA    0000000F =          15. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_GSFINAL                            000054F9    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_INITIALIZER                        000054FA    0000000A =          10. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_HEADER0                            00000000    00000006 =           6. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_HEAP                               00005504    00000000 =           0. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00005504  _HEAP_start                        
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+
+Files Linked                              [ module(s) ]
+
+main.rel                                  [ main ]
+../../fusion-c/include/crt0_msxdos.rel    [  ]
+../lib/trig/trig.rel                      [ trig ]
+../lib/fixed/fixed.rel                    [ fixed ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fssub.rel ]
+../../fusion-c/lib/fusion.lib             [ cls.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fsmul.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ cosf.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _slong2fs.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fs2slong.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _ulong2fs.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fs2ulong.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ sinf.rel ]
+../../fusion-c/lib/fusion.lib             [ setrealtimer.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ sincosf.rel ]
+../../fusion-c/lib/fusion.lib             [ putchar_msxdos.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fslt.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ mul.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ powf.rel ]
+../../fusion-c/lib/fusion.lib             [ width.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fsadd.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ fabsf.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _divslong.rel ]
+../../fusion-c/lib/fusion.lib             [ realtimer.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _divulong.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fs2sint.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _sint2fs.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fs2uint.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _uint2fs.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _memset.rel ]
+../../fusion-c/lib/fusion.lib             [ itoa.rel ]
+../../fusion-c/lib/fusion.lib             [ print.rel ]
+../../fusion-c/lib/fusion.lib             [ strconcat.rel ]
+../../fusion-c/lib/fusion.lib             [ strreverse.rel ]
+../../fusion-c/lib/fusion.lib             [ strlen.rel ]
+../../fusion-c/lib/fusion.lib             [ locate.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fsdiv.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _uchar2fs.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ modsigned.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _mullong.rel ]
+../../fusion-c/lib/fusion.lib             [ setcolors.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ divsigned.rel ]
+../../fusion-c/lib/fusion.lib             [ screen.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ errno.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ logf.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ _fseq.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ expf.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ divunsigned.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ ldexpf.rel ]
+/usr/local/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ frexpf.rel ]
+../../fusion-c/lib/fusion.lib             [ printchar.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+
+User Base Address Definitions
+
+_CODE = 0x0106
+_DATA = 0x0000
+
+
