@@ -20,6 +20,7 @@
 #define xtype lfixed
 */
 #define itype int
+#define xtype fixed
 #define i2x int2fixed
 #define f2x float2fixed
 #define x2i fixed2int
@@ -28,10 +29,10 @@
 #define lx_mul lfixed_mul
 #define x_div fixed_div
 #define lx_div lfixed_div
-#define xtype fixed
 
 xtype c, d, e, f, g, h, D, l, m, n, t;
 xtype _1, _2, _5, _8, _15, _30;
+xtype fg, fe, dg, de, dn, eh, gh, mh, nh;
 
 int i, j, k, w=0;
 int i_max, j_max;
@@ -57,8 +58,9 @@ void PrintFloat(float value, char round)
     Itoa((int)((value-(int)value)*powf(10.0f, round)), buffer2, 10);
     if (StrLen(buffer2) < round) 
     {
-        char buffer3[4]; // round-StrLen(buffer2)
-        memset(buffer3,'0', sizeof buffer3);
+        char buffer3[4];
+        memset(buffer3,'0', round-StrLen(buffer2));
+        buffer3[round-StrLen(buffer2)] = '\0';
         StrConcat(buffer, buffer3);
     }
     StrConcat(buffer, buffer2);
@@ -107,6 +109,9 @@ int main() {
     //printf("j_max=%d", j_max);
 
     while(1) {
+        Locate(0,0);
+        putchar('a');
+
         SetRealTimer(0);
         memset(b,32, sizeof b);
         memset(z,0,sizeof z);
@@ -114,6 +119,9 @@ int main() {
         e = f2x(sin(A));
         m = f2x(cos(B));
         n = f2x(sin(B));
+
+        Locate(0,0);
+        putchar('b');
 
         for(j=0; j < j_max; j++) {
             Locate(0, 22);
@@ -123,18 +131,26 @@ int main() {
 
             d = lt_cos_j[j];
             f = lt_sin_j[j];
+
+            h = d + _2;
+
+            fg = x_mul(f, g); fe = x_mul(f, e);
+            dg = x_mul(d, g); de = x_mul(d, e);
+            dn = x_mul(d, n); eh = x_mul(e, h);
+            gh = x_mul(g, h); mh = x_mul(m, h);
+            nh = x_mul(n, h);
+
             for(i=0; i < i_max; i++) {
                 c = lt_sin_i[i];
                 l = lt_cos_i[i];
 
-                h = d + _2;
-                D = lx_div(_1, (x_mul(x_mul(c, e), h) + x_mul(f, g) + _5));
-                t = x_mul(x_mul(c, g), h) - x_mul(f, e);
-                x = 40 + x2i( lx_mul(x_mul(D, (x_mul(h, x_mul(l, m)) - x_mul(t, n))), _30 ));
-                y = 12 + x2i( x_mul(x_mul(D, (x_mul(h, x_mul(l, n)) + x_mul(t, m))), _15 ));
+                D = lx_div(_1, x_mul(c, eh) + fg + _5);
+                t = x_mul(c, gh) - fe;
+                x = 40 + x2i( lx_mul(x_mul(D, x_mul(mh, l) - x_mul(t, n)), _30) );
+                y = 12 + x2i( x_mul(x_mul(D, x_mul(nh, l) + x_mul(t, m)), _15) );
                 o = x + 80 * y;
-                if(22 > y && y > 0 && x > 0 && 80 > x && D>z[o]) {
-                    N = x2i( x_mul( (x_mul((x_mul(f, e) - x_mul(c, x_mul(d, g))), m) - x_mul(c, x_mul(d, e)) - x_mul(f, g) - x_mul(l, x_mul(d, n))), _8 ));
+                if(22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+                    N = x2i( x_mul( x_mul(fe - x_mul(c, dg), m) - x_mul(c, de) - fg - x_mul(l, dn), _8 ));
                     z[o] = D;
                     b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
                 }
@@ -146,6 +162,9 @@ int main() {
         }
         A += A_inc*5;
         B += B_inc*5;
+            
+        Locate(0,0);
+        putchar('c');
 
         fElapsedTime = RealTimer()/fVDPHz;
         Locate(2, 22);
